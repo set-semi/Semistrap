@@ -607,7 +607,7 @@ namespace Semistrap
                         releaseNoteVersion = currentVer;
                     }
 
-                    Utilities.ShellExecute($"https://github.com/{App.ProjectRepository}/wiki/Release-notes-for-Semistrap-v{releaseNoteVersion}");
+                    Utilities.ShellExecute($"https://semistrap.mintlify.site/");
                 }
 #pragma warning restore CS0162
             }

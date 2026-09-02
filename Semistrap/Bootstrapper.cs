@@ -1557,7 +1557,7 @@ namespace Semistrap
                     {
                         Frontend.ShowConnectivityDialog(
                             Strings.Dialog_Connectivity_UnableToDownload,
-                            String.Format(Strings.Dialog_Connectivity_UnableToDownloadReason, "[https://github.com/set-semi/Semistrap/wiki](https://github.com/set-semi/Semistrap/wiki)"),
+                            String.Format(Strings.Dialog_Connectivity_UnableToDownloadReason, "[https://semistrap.mintlify.site/](https://semistrap.mintlify.site/)"),
                             MessageBoxImage.Error,
                             ex
                         );

@@ -21,7 +21,7 @@ namespace Semistrap
         public const string ProjectOwner = "set-semi";
         public const string ProjectRepository = "set-semi/Semistrap";
         public const string ProjectDownloadLink = "https://github.com/set-semi/Semistrap/releases/latest";
-        public const string ProjectHelpLink = "https://github.com/set-semi/Semistrap/wiki";
+        public const string ProjectHelpLink = "https://semistrap.mintlify.site/";
         public const string ProjectSupportLink = "https://github.com/set-semi/Semistrap/issues/new";
 
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";

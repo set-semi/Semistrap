@@ -27,7 +27,7 @@ namespace Semistrap.UI.Elements.Dialogs
                 LocateLogFileButton.Content = Strings.Dialog_Exception_CopyLogContents;
 
             string repoUrl = $"https://github.com/{App.ProjectRepository}";
-            string wikiUrl = $"https://github.com/set-semi/Semistrap/wiki";
+            string wikiUrl = $"https://semistrap.mintlify.site/";
 
             string title = HttpUtility.UrlEncode($"[BUG] {exception.GetType()}: {exception.Message}");
             string log = HttpUtility.UrlEncode(App.Logger.AsDocument);

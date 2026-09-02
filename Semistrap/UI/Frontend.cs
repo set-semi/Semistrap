@@ -24,7 +24,7 @@ namespace Semistrap.UI
 
             string info = String.Format(
                 Strings.Dialog_PlayerError_FailedLaunch,
-                $"https://github.com/set-semi/Semistrap/wiki"
+                $"https://semistrap.mintlify.site/"
             );
 
             ShowMessageBox(info, MessageBoxImage.Error);
