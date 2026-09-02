@@ -1,6 +1,5 @@
 namespace Semistrap.Models.APIs.Roblox
 {
-
     public class UniverseIdResponse
     {
         [JsonPropertyName("universeId")]

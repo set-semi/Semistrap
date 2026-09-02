@@ -1,5 +1,4 @@
 using Microsoft.Win32;
-
 namespace Semistrap.Extensions
 {
     public static class ThemeEx
@@ -8,12 +7,9 @@ namespace Semistrap.Extensions
         {
             if (dialogTheme != Theme.Default)
                 return dialogTheme;
-
             using var key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
-
             if (key?.GetValue("AppsUseLightTheme") is int value && value == 0)
                 return Theme.Dark;
-
             return Theme.Light;
         }
     }

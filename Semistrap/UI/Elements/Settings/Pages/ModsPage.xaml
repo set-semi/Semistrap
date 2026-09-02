@@ -15,7 +15,6 @@
       Scrollable="True">
     <StackPanel Margin="0,0,14,14">
         <TextBlock Text="{x:Static resources:Strings.Menu_Mods_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-
         <Grid Margin="0,16,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -25,21 +24,18 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
             <ui:CardAction Grid.Row="0" Grid.Column="0" x:Name="OpenModFolderCardAction" Margin="0,0,4,0" Icon="Folder24" Command="{Binding OpenModsFolderCommand}">
                 <StackPanel>
                     <TextBlock FontSize="14" Text="{x:Static resources:Strings.Menu_Mods_OpenModsFolder_Title}" TextWrapping="Wrap" />
                     <TextBlock Margin="0,2,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_Mods_OpenModsFolder_Description}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" TextWrapping="Wrap" />
                 </StackPanel>
             </ui:CardAction>
-
             <ui:CardAction Grid.Row="0" Grid.Column="1" Margin="4,0,0,0" Icon="BookQuestionMark24" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://semistrap.mintlify.site/">
                 <StackPanel>
                     <TextBlock FontSize="14" Text="{x:Static resources:Strings.Common_Help}" />
                     <TextBlock Margin="0,2,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_Mods_Help_Description}" Padding="0,0,16,0"  Foreground="{DynamicResource TextFillColorTertiaryBrush}" TextWrapping="Wrap" />
                 </StackPanel>
             </ui:CardAction>
-
             <ui:CardAction Grid.Row="1" Grid.ColumnSpan="2" Margin="0,8,0,0" Icon="WindowWrench24" Command="{Binding OpenCompatSettingsCommand}">
                 <StackPanel>
                     <TextBlock FontSize="14" Text="{x:Static resources:Strings.Menu_Mods_Misc_CompatibilitySettings_Title}" TextWrapping="Wrap" />
@@ -47,9 +43,7 @@
                 </StackPanel>
             </ui:CardAction>
         </Grid>
-
         <TextBlock Text="{x:Static resources:Strings.Common_Presets}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Mods_Presets_MouseCursor_Title}" 
             Description="{x:Static resources:Strings.Menu_Mods_Presets_MouseCursor_Description}">
@@ -61,19 +55,16 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:OptionControl>
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Mods_Presets_OldAvatarEditor_Title}" 
             Description="{x:Static resources:Strings.Menu_Mods_Presets_OldAvatarEditor_Description}">
             <ui:ToggleSwitch IsChecked="{Binding OldAvatarBackgroundTask.NewState, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Mods_Presets_OldCharacterSounds_Title}" 
             Description="{x:Static resources:Strings.Menu_Mods_Presets_OldCharacterSounds_Description}">
             <ui:ToggleSwitch IsChecked="{Binding OldCharacterSoundsTask.NewState, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Mods_Presets_EmojiType_Title}" 
             Description="{x:Static resources:Strings.Menu_Mods_Presets_EmojiType_Description}">
@@ -85,9 +76,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:OptionControl>
-
         <TextBlock Text="{x:Static resources:Strings.Common_Miscellaneous}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Mods_Misc_CustomFont_Title}">
             <StackPanel>

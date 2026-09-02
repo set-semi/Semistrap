@@ -1,5 +1,4 @@
 using Semistrap.RobloxInterfaces;
-
 namespace Semistrap.Models.Manifest
 {
     public class FileManifest : List<ManifestFile>
@@ -7,15 +6,12 @@ namespace Semistrap.Models.Manifest
         private FileManifest(string data)
         {
             using StringReader reader = new StringReader(data);
-
             while (true)
             {
                 string? fileName = reader.ReadLine();
                 string? signature = reader.ReadLine();
-
                 if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(signature))
                     break;
-
                 Add(new ManifestFile
                 {
                     Name = fileName,
@@ -23,12 +19,10 @@ namespace Semistrap.Models.Manifest
                 });
             }
         }
-
         public static async Task<FileManifest> Get(string versionGuid)
         {
             string pkgManifestUrl = Deployment.GetLocation($"/{versionGuid}-rbxManifest.txt");
             var pkgManifestData = await App.HttpClient.GetStringAsync(pkgManifestUrl);
-
             return new FileManifest(pkgManifestData);
         }
     }

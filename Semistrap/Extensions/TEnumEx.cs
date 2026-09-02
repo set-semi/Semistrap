@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Reflection;
-
 namespace Semistrap.Extensions
 {
     internal static class TEnumEx
@@ -10,11 +9,9 @@ namespace Semistrap.Extensions
             string? enumName = e?.ToString();
             if (enumName == null)
                 return null;
-
             FieldInfo? field = e?.GetType().GetField(enumName);
             if (field == null)
                 return null;
-
             DescriptionAttribute? attribute = field.GetCustomAttribute<DescriptionAttribute>();
             return attribute?.Description;
         }

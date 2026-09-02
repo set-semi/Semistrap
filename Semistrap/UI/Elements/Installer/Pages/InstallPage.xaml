@@ -12,11 +12,9 @@
       Title="InstallPage"
       Scrollable="True"
       Loaded="UiPage_Loaded">
-
     <StackPanel Margin="0,0,14,14">
         <TextBlock FontSize="20" FontWeight="SemiBold" Text="{x:Static resources:Strings.Installer_Install_Location_Title}" TextWrapping="Wrap" />
         <TextBlock FontSize="14" Text="{x:Static resources:Strings.Installer_Install_Location_Text}" TextWrapping="Wrap" />
-
         <ui:Card Margin="0,8,0,0" Padding="12">
             <Grid>
                 <Grid.RowDefinitions>
@@ -33,7 +31,6 @@
                 <ui:Button Grid.Column="2" Margin="4,0,0,0" Height="35" Icon="ArrowCounterclockwise24" Content="{x:Static resources:Strings.Common_Reset}" Command="{Binding ResetInstallLocationCommand}" />
             </Grid>
         </ui:Card>
-
         <TextBlock Margin="0,8,0,0" FontSize="14" Text="{x:Static resources:Strings.Installer_Install_Location_DataFound}" Visibility="{Binding DataFoundMessageVisibility, Mode=OneWay}" TextWrapping="Wrap" />
         <TextBlock Margin="0,8,0,0" FontSize="14" Text="{Binding ErrorMessage, Mode=OneWay}" Foreground="{DynamicResource SystemFillColorCriticalBrush}" TextWrapping="Wrap">
             <TextBlock.Style>
@@ -46,21 +43,17 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-
         <TextBlock FontSize="20" FontWeight="SemiBold" Text="{x:Static resources:Strings.Common_Shortcuts}" TextWrapping="Wrap" Margin="0,16,0,0" />
         <TextBlock FontSize="14" Text="{x:Static resources:Strings.Installer_Install_Shortcuts_Description}" TextWrapping="Wrap" />
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <controls:OptionControl Grid.Column="0" Margin="0,0,4,0"
                 Header="{x:Static resources:Strings.Common_Shortcuts_Desktop}">
                 <ui:ToggleSwitch IsChecked="{Binding CreateDesktopShortcuts, Mode=TwoWay}" />
             </controls:OptionControl>
-
             <controls:OptionControl Grid.Column="1" Margin="4,0,0,0"
             Header="{x:Static resources:Strings.Common_Shortcuts_StartMenu}">
                 <ui:ToggleSwitch IsChecked="{Binding CreateStartMenuShortcuts, Mode=TwoWay}" />

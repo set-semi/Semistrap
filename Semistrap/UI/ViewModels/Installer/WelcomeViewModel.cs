@@ -2,24 +2,17 @@ namespace Semistrap.UI.ViewModels.Installer
 {
     public class WelcomeViewModel : NotifyPropertyChangedViewModel
     {
-
         public string MainText => String.Format(
             Strings.Installer_Welcome_MainText,
             "[github.com/set-semi/Semistrap](https://github.com/set-semi/Semistrap)",
             "[Semistrap](https://github.com/set-semi/Semistrap)"
         );
-
         public string VersionNotice { get; private set; } = "";
-
         public bool CanContinue { get; set; } = false;
-
         public event EventHandler? CanContinueEvent;
-
-
         public async void DoChecks()
         {
             var releaseInfo = await App.GetLatestRelease();
-
             if (releaseInfo is not null)
             {
                 if (Utilities.CompareVersions(App.Version, releaseInfo.TagName) == VersionComparison.LessThan)
@@ -28,10 +21,8 @@ namespace Semistrap.UI.ViewModels.Installer
                     OnPropertyChanged(nameof(VersionNotice));
                 }
             }
-
             CanContinue = true;
             OnPropertyChanged(nameof(CanContinue));
-
             CanContinueEvent?.Invoke(this, new EventArgs());
         }
     }

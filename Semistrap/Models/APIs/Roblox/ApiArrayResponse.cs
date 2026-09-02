@@ -1,8 +1,5 @@
 namespace Semistrap.Models.APIs.Roblox
 {
-
-
-
     public class ApiArrayResponse<T>
     {
         [JsonPropertyName("data")]

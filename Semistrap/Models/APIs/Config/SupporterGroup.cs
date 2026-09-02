@@ -4,7 +4,6 @@ namespace Semistrap.Models.APIs.Config
     {
         [JsonPropertyName("columns")]
         public int Columns { get; set; } = 0;
-
         [JsonPropertyName("supporters")]
         public List<Supporter> Supporters { get; set; } = Enumerable.Empty<Supporter>().ToList();
     }

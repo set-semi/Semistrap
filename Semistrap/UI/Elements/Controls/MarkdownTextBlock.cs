@@ -7,12 +7,8 @@ using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 using Markdig;
 using System.Windows.Media;
-
 namespace Semistrap.UI.Elements.Controls
 {
-
-
-
     [ContentProperty("MarkdownText")]
     [Localizability(LocalizationCategory.Text)]
     class MarkdownTextBlock : TextBlock
@@ -21,18 +17,15 @@ namespace Semistrap.UI.Elements.Controls
                 .UseEmphasisExtras(Markdig.Extensions.EmphasisExtras.EmphasisExtraOptions.Marked)
                 .UseSoftlineBreakAsHardlineBreak()
                 .Build();
-
         public static readonly DependencyProperty MarkdownTextProperty = 
             DependencyProperty.Register(nameof(MarkdownText), typeof(string), typeof(MarkdownTextBlock),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender, OnTextMarkdownChanged));
-
         [Localizability(LocalizationCategory.Text)]
         public string MarkdownText
         {
             get => (string)GetValue(MarkdownTextProperty);
             set => SetValue(MarkdownTextProperty, value);
         }
-
         private static System.Windows.Documents.Inline? GetWpfInlineFromMarkdownInline(Markdig.Syntax.Inlines.Inline? inline)
         {
             if (inline is LiteralInline literalInline)
@@ -57,7 +50,6 @@ namespace Semistrap.UI.Elements.Controls
                                 return childInline;
                             }
                         }
-
                     case '=':
                         {
                             var childInline = new Span(GetWpfInlineFromMarkdownInline(emphasisInline.FirstChild));
@@ -65,18 +57,14 @@ namespace Semistrap.UI.Elements.Controls
                             return childInline;
                         }
                 }
-
             }
             else if (inline is LinkInline linkInline)
             {
                 string? url = linkInline.Url;
                 var textInline = linkInline.FirstChild;
-
                 if (string.IsNullOrEmpty(url))
                     return GetWpfInlineFromMarkdownInline(textInline);
-
                 var childInline = GetWpfInlineFromMarkdownInline(textInline);
-
                 return new Hyperlink(childInline)
                 {
                     Command = GlobalViewModel.OpenWebpageCommand,
@@ -87,42 +75,29 @@ namespace Semistrap.UI.Elements.Controls
             {
                 return new LineBreak();
             }
-
             return null;
         }
-
         private void AddMarkdownInline(Markdig.Syntax.Inlines.Inline? inline)
         {
             var wpfInline = GetWpfInlineFromMarkdownInline(inline);
-
             if (wpfInline is not null)
                 Inlines.Add(wpfInline);
         }
-
         private static void OnTextMarkdownChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             if (dependencyObject is not MarkdownTextBlock markdownTextBlock)
                 return;
-
             if (dependencyPropertyChangedEventArgs.NewValue is not string rawDocument)
                 return;
-
             var document = Markdown.Parse(rawDocument, _markdownPipeline);
-
             markdownTextBlock.Inlines.Clear();
-
             var lastBlock = document.Last();
-
-
-
             foreach (var block in document)
             {
                 if (block is not ParagraphBlock paragraphBlock || paragraphBlock.Inline is null)
                     continue;
-
                 foreach (var inline in paragraphBlock.Inline)
                     markdownTextBlock.AddMarkdownInline(inline);
-
                 if (block != lastBlock)
                 {
                     markdownTextBlock.AddMarkdownInline(new LineBreakInline());

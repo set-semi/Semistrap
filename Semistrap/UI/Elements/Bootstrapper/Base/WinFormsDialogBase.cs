@@ -1,18 +1,13 @@
 using System.Windows.Forms;
 using System.Windows.Shell;
-
 using Semistrap.UI.Utility;
-
 namespace Semistrap.UI.Elements.Bootstrapper.Base
 {
     public class WinFormsDialogBase : Form, IBootstrapperDialog
     {
         public const int TaskbarProgressMaximum = 100;
-
         public Semistrap.Bootstrapper? Bootstrapper { get; set; }
-
         private bool _isClosing;
-
         #region UI Elements
         protected virtual string _message { get; set; } = "Please wait...";
         protected virtual ProgressBarStyle _progressStyle { get; set; }
@@ -21,7 +16,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
         protected virtual TaskbarItemProgressState _taskbarProgressState { get; set; }
         protected virtual double _taskbarProgressValue { get; set; }
         protected virtual bool _cancelEnabled { get; set; }
-
         public string Message
         {
             get => _message;
@@ -33,7 +27,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                     _message = value;
             }
         }
-
         public ProgressBarStyle ProgressStyle
         {
             get => _progressStyle;
@@ -45,7 +38,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                     _progressStyle = value;
             }
         }
-
         public int ProgressMaximum
         {
             get => _progressMaximum;
@@ -57,7 +49,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                     _progressMaximum = value;
             }
         }
-
         public int ProgressValue
         {
             get => _progressValue;
@@ -69,7 +60,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                     _progressValue = value;
             }
         }
-
         public TaskbarItemProgressState TaskbarProgressState
         {
             get => _taskbarProgressState;
@@ -79,7 +69,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                 TaskbarProgress.SetProgressState(Process.GetCurrentProcess().MainWindowHandle, value);
             }
         }
-
         public double TaskbarProgressValue
         {
             get => _taskbarProgressValue;
@@ -89,7 +78,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                 TaskbarProgress.SetProgressValue(Process.GetCurrentProcess().MainWindowHandle, (int)value, TaskbarProgressMaximum);
             }
         }
-
         public bool CancelEnabled
         {
             get => _cancelEnabled;
@@ -102,11 +90,9 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
             }
         }
         #endregion
-
         public void ScaleWindow()
         {
             Size = MinimumSize = MaximumSize = WindowScaling.GetScaledSize(Size);
-
             foreach (Control control in Controls)
             {
                 control.Size = WindowScaling.GetScaledSize(control.Size);
@@ -114,32 +100,26 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                 control.Padding = WindowScaling.GetScaledPadding(control.Padding);
             }
         }
-
         public void SetupDialog()
         {
             Text = App.Settings.Prop.BootstrapperTitle;
             Icon = App.Settings.Prop.BootstrapperIcon.GetIcon();
-
             if (Locale.RightToLeft)
             {
                 this.RightToLeft = RightToLeft.Yes;
                 this.RightToLeftLayout = true;
             }
         }
-
         #region WinForms event handlers
         public void ButtonCancel_Click(object? sender, EventArgs e) => Close();
-
         public void Dialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!_isClosing)
                 Bootstrapper?.Cancel();
         }
         #endregion
-
         #region IBootstrapperDialog Methods
         public void ShowBootstrapper() => ShowDialog();
-
         public virtual void CloseBootstrapper()
         {
             if (InvokeRequired)
@@ -152,7 +132,6 @@ namespace Semistrap.UI.Elements.Bootstrapper.Base
                 Close();
             }
         }
-
         public virtual void ShowSuccess(string message, Action? callback) => BaseFunctions.ShowSuccess(message, callback);
         #endregion
     }

@@ -26,7 +26,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <ui:TitleBar
             x:Name="RootTitleBar"
             Title="{Binding Path=Title, Mode=OneTime}"
@@ -36,7 +35,6 @@
             Icon="pack://application:,,,/Semistrap.ico"
             MinimizeToTray="False"
             UseSnapLayout="True" />
-
         <avalonedit:TextEditor
             x:Name="UIXML"
             Grid.Row="1"
@@ -44,13 +42,11 @@
             ShowLineNumbers="True"
             Style="{StaticResource NewTextEditor}"
             SyntaxHighlighting="XML" />
-
         <ui:Button
             Grid.Row="2"
             Margin="10"
             Command="{Binding Path=OpenThemeFolderCommand, Mode=OneTime}"
             Content="{x:Static resources:Strings.CustomTheme_Editor_OpenThemeDirectory}" />
-
         <Grid
             Grid.Row="2"
             Margin="10"
@@ -59,13 +55,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
             <ui:Button
                 Grid.Column="0"
                 Margin="0,0,4,0"
                 Command="{Binding Path=PreviewCommand, Mode=OneTime}"
                 Content="{x:Static resources:Strings.CustomTheme_Editor_Preview}" />
-
             <ui:Button
                 Grid.Column="1"
                 Margin="4,0,0,0"
@@ -73,7 +67,6 @@
                 Command="{Binding Path=SaveCommand, Mode=OneTime}"
                 Content="{x:Static resources:Strings.CustomTheme_Editor_Save}" />
         </Grid>
-
         <ui:Snackbar
             x:Name="Snackbar"
             Grid.RowSpan="3"

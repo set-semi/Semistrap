@@ -1,11 +1,8 @@
 using System.Windows;
-
 using Windows.Win32;
 using Windows.Win32.Foundation;
-
 using Semistrap.UI.Elements.Dialogs;
 using Semistrap.Enums;
-
 namespace Semistrap
 {
     public static class LaunchHandler
@@ -13,37 +10,29 @@ namespace Semistrap
         public static void ProcessNextAction(NextAction action, bool isUnfinishedInstall = false)
         {
             const string LOG_IDENT = "LaunchHandler::ProcessNextAction";
-
             switch (action)
             {
                 case NextAction.LaunchSettings:
                     App.Logger.WriteLine(LOG_IDENT, "Opening settings");
                     LaunchSettings();
                     break;
-
                 case NextAction.LaunchRoblox:
                     App.Logger.WriteLine(LOG_IDENT, "Opening Roblox");
                     LaunchRoblox(LaunchMode.Player);
                     break;
-
                 case NextAction.LaunchRobloxStudio:
                     App.Logger.WriteLine(LOG_IDENT, "Opening Roblox Studio");
                     LaunchRoblox(LaunchMode.Studio);
                     break;
-
                 default:
                     App.Logger.WriteLine(LOG_IDENT, "Closing");
                     App.Terminate(isUnfinishedInstall ? ErrorCode.ERROR_INSTALL_USEREXIT : ErrorCode.ERROR_SUCCESS);
                     break;
             }
         }
-
         public static void ProcessLaunchArgs()
         {
             const string LOG_IDENT = "LaunchHandler::ProcessLaunchArgs";
-
-
-
             if (App.LaunchSettings.UninstallFlag.Active)
             {
                 App.Logger.WriteLine(LOG_IDENT, "Opening uninstaller");
@@ -80,36 +69,28 @@ namespace Semistrap
                 App.Terminate();
             }
         }
-
         public static void LaunchInstaller()
         {
             using var interlock = new InterProcessLock("Installer");
-
             if (!interlock.IsAcquired)
             {
                 Frontend.ShowMessageBox(Strings.Dialog_AlreadyRunning_Installer, MessageBoxImage.Stop);
                 App.Terminate();
                 return;
             }
-
             if (App.LaunchSettings.UninstallFlag.Active)
             {
                 Frontend.ShowMessageBox(Strings.Bootstrapper_FirstRunUninstall, MessageBoxImage.Error);
                 App.Terminate(ErrorCode.ERROR_INVALID_FUNCTION);
                 return;
             }
-
             if (App.LaunchSettings.QuietFlag.Active)
             {
                 var installer = new Installer();
-
                 if (!installer.CheckInstallLocation())
                     App.Terminate(ErrorCode.ERROR_INSTALL_FAILURE);
-
                 installer.DoInstall();
-
                 interlock.Dispose();
-
                 ProcessLaunchArgs();
             }
             else
@@ -117,33 +98,24 @@ namespace Semistrap
 #if QA_BUILD
                 Frontend.ShowMessageBox("You are about to install a QA build of Semistrap. The red window border indicates that this is a QA build.\n\nQA builds are handled completely separately of your standard installation, like a virtual environment.", MessageBoxImage.Information);
 #endif
-
                 new LanguageSelectorDialog().ShowDialog();
-
                 var installer = new UI.Elements.Installer.MainWindow();
                 installer.ShowDialog();
-
                 interlock.Dispose();
-
                 ProcessNextAction(installer.CloseAction, !installer.Finished);
             }
-
         }
-
         public static void LaunchUninstaller()
         {
             using var interlock = new InterProcessLock("Uninstaller");
-
             if (!interlock.IsAcquired)
             {
                 Frontend.ShowMessageBox(Strings.Dialog_AlreadyRunning_Uninstaller, MessageBoxImage.Stop);
                 App.Terminate();
                 return;
             }
-
             bool confirmed = false;
             bool keepData = true;
-
             if (App.LaunchSettings.QuietFlag.Active)
             {
                 confirmed = true;
@@ -152,97 +124,67 @@ namespace Semistrap
             {
                 var dialog = new UninstallerDialog();
                 dialog.ShowDialog();
-
                 confirmed = dialog.Confirmed;
                 keepData = dialog.KeepData;
             }
-
             if (!confirmed)
             {
                 App.Terminate();
                 return;
             }
-
             Installer.DoUninstall(keepData);
-
             Frontend.ShowMessageBox(Strings.Bootstrapper_SuccessfullyUninstalled, MessageBoxImage.Information);
-
             App.Terminate();
         }
-
         public static void LaunchSettings()
         {
             const string LOG_IDENT = "LaunchHandler::LaunchSettings";
-
             using var interlock = new InterProcessLock("Settings");
-
             if (interlock.IsAcquired)
             {
                 bool showAlreadyRunningWarning = Process.GetProcessesByName(App.ProjectName).Length > 1;
-
                 var window = new UI.Elements.Settings.MainWindow(showAlreadyRunningWarning);
-
-
                 window.ShowDialog();
             }
             else
             {
                 App.Logger.WriteLine(LOG_IDENT, "Found an already existing menu window");
-
                 var process = Utilities.GetProcessesSafe().Where(x => x.MainWindowTitle == Strings.Menu_Title).FirstOrDefault();
-
                 if (process is not null)
                     PInvoke.SetForegroundWindow((HWND)process.MainWindowHandle);
-
                 App.Terminate();
             }
         }
-
         public static void LaunchMenu()
         {
             var dialog = new LaunchMenuDialog();
             dialog.ShowDialog();
-
             ProcessNextAction(dialog.CloseAction);
         }
-
         public static void LaunchRoblox(LaunchMode launchMode)
         {
             const string LOG_IDENT = "LaunchHandler::LaunchRoblox";
-
             if (launchMode == LaunchMode.None)
                 throw new InvalidOperationException("No Roblox launch mode set");
-
             if (!File.Exists(Path.Combine(Paths.System, "mfplat.dll")))
             {
                 Frontend.ShowMessageBox(Strings.Bootstrapper_WMFNotFound, MessageBoxImage.Error);
-
                 if (!App.LaunchSettings.QuietFlag.Active)
                     Utilities.ShellExecute("https://support.microsoft.com/en-us/topic/media-feature-pack-list-for-windows-n-editions-c1c6fffa-d052-8338-7a79-a4bb980a700a");
-
                 App.Terminate(ErrorCode.ERROR_FILE_NOT_FOUND);
             }
-
             if (App.Settings.Prop.ConfirmLaunches && launchMode != LaunchMode.Studio && Mutex.TryOpenExisting("ROBLOX_singletonMutex", out var _))
             {
-
-
-
-
                 var result = Frontend.ShowMessageBox(Strings.Bootstrapper_ConfirmLaunch, MessageBoxImage.Warning, MessageBoxButton.YesNo);
-
                 if (result != MessageBoxResult.Yes)
                 {
                     App.Terminate();
                     return;
                 }
             }
-
-
             App.Logger.WriteLine(LOG_IDENT, "Initializing bootstrapper");
             App.Bootstrapper = new Bootstrapper(launchMode);
             IBootstrapperDialog? dialog = null;
-
             if (!App.LaunchSettings.QuietFlag.Active)
             {
                 App.Logger.WriteLine(LOG_IDENT, "Initializing bootstrapper dialog");
@@ -250,107 +192,73 @@ namespace Semistrap
                 App.Bootstrapper.Dialog = dialog;
                 dialog.Bootstrapper = App.Bootstrapper;
             }
-
             Task.Run(App.Bootstrapper.Run).ContinueWith(t =>
             {
                 App.Logger.WriteLine(LOG_IDENT, "Bootstrapper task has finished");
-
                 if (t.IsFaulted)
                 {
                     App.Logger.WriteLine(LOG_IDENT, "An exception occurred when running the bootstrapper");
-
                     if (t.Exception is not null)
                         App.FinalizeExceptionHandling(t.Exception);
                 }
-
                 App.Terminate();
             });
-
             dialog?.ShowBootstrapper();
-
             App.Logger.WriteLine(LOG_IDENT, "Exiting");
         }
-
         public static void LaunchWatcher()
         {
             const string LOG_IDENT = "LaunchHandler::LaunchWatcher";
-
-
-
-
-
-
-
-
             var watcher = new Watcher();
-
             Task.Run(watcher.Run).ContinueWith(t => 
             {
                 App.Logger.WriteLine(LOG_IDENT, "Watcher task has finished");
-
                 watcher.Dispose();
-
                 if (t.IsFaulted)
                 {
                     App.Logger.WriteLine(LOG_IDENT, "An exception occurred when running the watcher");
-
                     if (t.Exception is not null)
                         App.FinalizeExceptionHandling(t.Exception);
                 }
-
                 App.Terminate();
             });
         }
-
         public static void LaunchBackgroundUpdater()
         {
             const string LOG_IDENT = "LaunchHandler::LaunchBackgroundUpdater";
-
-
             App.LaunchSettings.QuietFlag.Active = true;
             App.LaunchSettings.NoLaunchFlag.Active = true;
-
             if (!Enum.TryParse(App.LaunchSettings.BackgroundUpdaterFlag.Data, out LaunchMode launchMode))
                 throw new ApplicationException($"Invalid launch mode arg ({App.LaunchSettings.BackgroundUpdaterFlag.Data})");
-
             if (launchMode != LaunchMode.Player && launchMode != LaunchMode.Studio)
                 throw new ApplicationException($"Unsupported launch mode {launchMode} provided");
-
             App.Logger.WriteLine(LOG_IDENT, "Initializing bootstrapper");
             App.Bootstrapper = new Bootstrapper(launchMode)
             {
                 MutexNamePrefix = "Semistrap-BackgroundUpdater",
                 QuitIfMutexExists = true
             };
-
             CancellationTokenSource cts = new CancellationTokenSource();
-
             Task.Run(() =>
             {
                 App.Logger.WriteLine(LOG_IDENT, "Started event waiter");
                 using (EventWaitHandle handle = new EventWaitHandle(false, EventResetMode.AutoReset, "Semistrap-BackgroundUpdaterKillEvent"))
                     handle.WaitOne();
-
                 App.Logger.WriteLine(LOG_IDENT, "Received close event, killing it all!");
                 App.Bootstrapper.Cancel();
             }, cts.Token);
-
             Task.Run(App.Bootstrapper.Run).ContinueWith(t =>
             {
                 App.Logger.WriteLine(LOG_IDENT, "Bootstrapper task has finished");
                 cts.Cancel();
-
                 if (t.IsFaulted)
                 {
                     App.Logger.WriteLine(LOG_IDENT, "An exception occurred when running the bootstrapper");
-
                     if (t.Exception is not null)
                         App.FinalizeExceptionHandling(t.Exception);
                 }
-
                 App.Terminate();
             });
-
             App.Logger.WriteLine(LOG_IDENT, "Exiting");
         }
     }

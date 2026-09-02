@@ -1,5 +1,4 @@
 using System.Windows.Media;
-
 namespace Semistrap.Models
 {
     public class BootstrapperIconEntry

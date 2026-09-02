@@ -30,14 +30,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <ui:TitleBar
                 x:Name="RootTitleBar"
                 Title="Semistrap"
@@ -48,7 +46,6 @@
                 ShowClose="False"
                 ShowMaximize="False"
                 ShowMinimize="False" />
-
             <Grid x:Name="ElementGrid" Grid.Row="1" />
         </Grid>
     </Grid>

@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
 namespace Semistrap.UI.Utility
 {
     static class Rendering

@@ -23,61 +23,50 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <ui:TitleBar Grid.Row="0" Grid.ColumnSpan="2" Padding="8" ShowMinimize="False" ShowMaximize="False" Title="Semistrap" Icon="pack://application:,,,/Semistrap.ico" CanMaximize="False" KeyboardNavigation.TabNavigation="None" />
-
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <Grid Grid.Column="0" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
                 <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,32">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
                     <Image Grid.Column="0" Width="64" Height="64" Source="pack://application:,,,/Semistrap.ico" RenderOptions.BitmapScalingMode="HighQuality" />
                     <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
                         <TextBlock Text="Semistrap" FontSize="24" />
                         <TextBlock Text="{Binding Version, Mode=OneTime}" VerticalAlignment="Bottom" FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                     </StackPanel>
                 </Grid>
-
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                     <ui:Hyperlink Icon="QuestionCircle48" Content="{x:Static resources:Strings.About_Title}" Command="{Binding LaunchAboutCommand, Mode=OneTime}" HorizontalAlignment="Center" />
                     <ui:Hyperlink Icon="Book24" Content="{x:Static resources:Strings.LaunchMenu_SemistrapWiki}" NavigateUri="https://semistrap.mintlify.site/" HorizontalAlignment="Center" />
                 </StackPanel>
             </Grid>
-
             <StackPanel Grid.Column="1" Margin="16">
                 <ui:CardAction Icon="ArrowRight12" TabIndex="0" Command="{Binding LaunchRobloxCommand, Mode=OneTime}">
                     <StackPanel>
                         <TextBlock FontSize="14" Text="{x:Static resources:Strings.LaunchMenu_LaunchRoblox}" />
                     </StackPanel>
                 </ui:CardAction>
-
                 <ui:CardAction Margin="0,8,0,0" Icon="Wrench24" Command="{Binding LaunchRobloxStudioCommand, Mode=OneTime}">
                     <StackPanel>
                         <TextBlock FontSize="14" Text="{x:Static resources:Strings.LaunchMenu_LaunchRobloxStudio}" />
                     </StackPanel>
                 </ui:CardAction>
-
                 <ui:CardAction Margin="0,8,0,0" TabIndex="1" Icon="Settings28" Command="{Binding LaunchSettingsCommand, Mode=OneTime}">
                     <StackPanel>
                         <TextBlock FontSize="14" Text="{x:Static resources:Strings.LaunchMenu_ConfigureSettings}" />
                     </StackPanel>
                 </ui:CardAction>
-
                 <Border Margin="16" />
-
                 <ui:CardAction Margin="0,8,0,0" TabIndex="2" Icon="BookQuestionMark24" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://semistrap.mintlify.site/">
                     <StackPanel>
                         <TextBlock FontSize="14" Text="{x:Static resources:Strings.LaunchMenu_Wiki_Title}" />

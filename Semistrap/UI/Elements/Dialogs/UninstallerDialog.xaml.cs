@@ -14,18 +14,12 @@ using System.Windows.Shapes;
 using Semistrap.UI.ViewModels.Dialogs;
 using Semistrap.UI.ViewModels.Installer;
 using Wpf.Ui.Mvvm.Interfaces;
-
 namespace Semistrap.UI.Elements.Dialogs
 {
-
-
-
     public partial class UninstallerDialog
     {
         public bool Confirmed { get; private set; } = false;
-
         public bool KeepData { get; private set; } = true;
-
         public UninstallerDialog()
         {
             var viewModel = new UninstallerViewModel();
@@ -35,9 +29,7 @@ namespace Semistrap.UI.Elements.Dialogs
                 KeepData = viewModel.KeepData;
                 Close();
             };
-
             DataContext = viewModel;
-
             InitializeComponent();
         }
     }

@@ -22,9 +22,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <ui:TitleBar Grid.Row="0" Grid.ColumnSpan="2" Padding="8" x:Name="RootTitleBar" ShowMinimize="False" ShowMaximize="False" CanMaximize="False" KeyboardNavigation.TabNavigation="None" Title="{x:Static resources:Strings.Dialog_Connectivity_Title}" />
-
         <Grid Grid.Row="1" Margin="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -38,7 +36,6 @@
                 <RichTextBox x:Name="ErrorRichTextBox" Padding="8" Margin="0,8,0,0" Block.LineHeight="2" FontFamily="Courier New" IsReadOnly="True" />
             </StackPanel>
         </Grid>
-
         <Border Grid.Row="2" Padding="15" Background="{ui:ThemeResource SolidBackgroundFillColorSecondaryBrush}">
             <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
                 <Button x:Name="CloseButton" MinWidth="100" Content="{x:Static resources:Strings.Common_Close}" Margin="12,0,0,0" />

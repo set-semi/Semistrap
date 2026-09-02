@@ -26,11 +26,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <ui:TitleBar Grid.Row="0" Grid.ColumnSpan="2" Padding="8" x:Name="RootTitleBar" Title="{x:Static resources:Strings.ContextMenu_GameHistory_Title}" ShowMinimize="False" ShowMaximize="False" CanMaximize="False" KeyboardNavigation.TabNavigation="None" Icon="pack://application:,,,/Semistrap.ico" />
-
         <TextBlock Grid.Row="1" Margin="16,8,16,0" Text="{x:Static resources:Strings.ContextMenu_GameHistory_Description}" TextWrapping="Wrap" />
-
         <TextBlock Grid.Row="2" Margin="16,8,16,0" Text="{Binding Error, Mode=OneWay}" TextWrapping="Wrap">
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
@@ -43,7 +40,6 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-
         <Border Grid.Row="2">
             <Border.Style>
                 <Style TargetType="Border">
@@ -55,10 +51,8 @@
                     <Setter Property="Visibility" Value="Collapsed" />
                 </Style>
             </Border.Style>
-
             <ui:ProgressRing Grid.Row="1" IsIndeterminate="True" />
         </Border>
-
         <ListView Grid.Row="2" ItemsSource="{Binding GameHistory, Mode=OneWay}" Margin="8">
             <ListView.Style>
                 <Style TargetType="ListView" BasedOn="{StaticResource {x:Type ListView}}">
@@ -83,13 +77,11 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
                             <Border Grid.Column="0" Width="107" Height="107" CornerRadius="4">
                                 <Border.Background>
                                     <ImageBrush ImageSource="{Binding UniverseDetails.Thumbnail.ImageUrl, IsAsync=True}" />
                                 </Border.Background>
                             </Border>
-
                             <StackPanel Grid.Column="1" Margin="16,12,12,12" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding UniverseDetails.Data.Name}" FontSize="18" FontWeight="Medium" />
                                 <TextBlock Text="{Binding GameHistoryDescription}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />

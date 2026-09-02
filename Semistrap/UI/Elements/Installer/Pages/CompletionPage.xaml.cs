@@ -1,11 +1,7 @@
 using System.Windows;
 using Semistrap.UI.ViewModels.Installer;
-
 namespace Semistrap.UI.Elements.Installer.Pages
 {
-
-
-
     public partial class CompletionPage
     {
         private readonly CompletionViewModel _viewModel = new();
@@ -19,11 +15,9 @@ namespace Semistrap.UI.Elements.Installer.Pages
                     window.Close();
                 }
             };
-
             DataContext = _viewModel;
             InitializeComponent();
         }
-
         private void UiPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (Window.GetWindow(this) is MainWindow window)

@@ -1,12 +1,7 @@
 using System.Windows.Controls;
-
 using Semistrap.UI.ViewModels.Settings;
-
 namespace Semistrap.UI.Elements.Settings.Pages
 {
-
-
-
     public partial class IntegrationsPage
     {
         public IntegrationsPage()
@@ -14,7 +9,6 @@ namespace Semistrap.UI.Elements.Settings.Pages
             DataContext = new IntegrationsViewModel();
             InitializeComponent();
         }
-
         public void CustomIntegrationSelection(object sender, SelectionChangedEventArgs e)
         {
             IntegrationsViewModel viewModel = (IntegrationsViewModel)DataContext;

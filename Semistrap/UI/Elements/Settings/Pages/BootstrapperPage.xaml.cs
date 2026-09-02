@@ -12,14 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using Semistrap.UI.ViewModels.Settings;
-
 namespace Semistrap.UI.Elements.Settings.Pages
 {
-
-
-
     public partial class BehaviourPage
     {
         public BehaviourPage()
@@ -27,10 +22,8 @@ namespace Semistrap.UI.Elements.Settings.Pages
             DataContext = new BehaviourViewModel();
             InitializeComponent();
         }
-
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

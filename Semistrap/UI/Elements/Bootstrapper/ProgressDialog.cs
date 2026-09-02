@@ -1,12 +1,8 @@
 using System.Drawing;
 using System.Windows.Forms;
-
 using Semistrap.UI.Elements.Bootstrapper.Base;
-
 namespace Semistrap.UI.Elements.Bootstrapper
 {
-
-
     public partial class ProgressDialog : WinFormsDialogBase
     {
         protected override string _message
@@ -14,35 +10,29 @@ namespace Semistrap.UI.Elements.Bootstrapper
             get => labelMessage.Text;
             set => labelMessage.Text = value;
         }
-
         protected override ProgressBarStyle _progressStyle
         {
             get => ProgressBar.Style;
             set => ProgressBar.Style = value;
         }
-
         protected override int _progressMaximum
         {
             get => ProgressBar.Maximum;
             set => ProgressBar.Maximum = value;
         }
-
         protected override int _progressValue
         {
             get => ProgressBar.Value;
             set => ProgressBar.Value = value;
         }
-
         protected override bool _cancelEnabled
         {
             get => this.buttonCancel.Enabled;
             set => this.buttonCancel.Enabled = this.buttonCancel.Visible = value;
         }
-
         public ProgressDialog()
         {
             InitializeComponent();
-
             if (App.Settings.Prop.Theme.GetFinal() == Theme.Dark)
             {
                 this.labelMessage.ForeColor = SystemColors.Window;
@@ -51,17 +41,13 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 this.panel1.BackColor = Color.FromArgb(35, 37, 39);
                 this.BackColor = Color.FromArgb(25, 27, 29);
             }
-
             this.labelMessage.Text = Strings.Bootstrapper_StylePreview_TextCancel;
             this.buttonCancel.Text = Strings.Common_Cancel;
             this.IconBox.BackgroundImage = App.Settings.Prop.BootstrapperIcon.GetIcon().GetSized(128, 128).ToBitmap();
-
             SetupDialog();
-
             this.ProgressBar.RightToLeft = this.RightToLeft;
             this.ProgressBar.RightToLeftLayout = this.RightToLeftLayout;
         }
-
         private void ButtonCancel_MouseEnter(object sender, EventArgs e)
         {
             if (App.Settings.Prop.Theme.GetFinal() == Theme.Dark)
@@ -73,7 +59,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 this.buttonCancel.Image = Properties.Resources.CancelButtonHover;
             }
         }
-
         private void ButtonCancel_MouseLeave(object sender, EventArgs e)
         {
             if (App.Settings.Prop.Theme.GetFinal() == Theme.Dark)
@@ -85,7 +70,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 this.buttonCancel.Image = Properties.Resources.CancelButton;
             }
         }
-
         private void ProgressDialog_Load(object sender, EventArgs e)
         {
             this.Activate();

@@ -18,20 +18,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 using System.Windows.Threading;
-
 namespace Semistrap.UI.Elements.Bootstrapper
 {
-
-
-
     public partial class FluentDialog : IBootstrapperDialog
     {
         private readonly FluentDialogViewModel _viewModel;
-
         public Semistrap.Bootstrapper? Bootstrapper { get; set; }
-
         private bool _isClosing;
-
         #region UI Elements
         public string Message
         {
@@ -42,7 +35,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.Message));
             }
         }
-
         public ProgressBarStyle ProgressStyle
         {
             get => _viewModel.ProgressIndeterminate ? ProgressBarStyle.Marquee : ProgressBarStyle.Continuous;
@@ -52,7 +44,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.ProgressIndeterminate));
             }
         }
-
         public int ProgressMaximum
         {
             get => _viewModel.ProgressMaximum;
@@ -62,7 +53,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.ProgressMaximum));
             }
         }
-
         public int ProgressValue
         {
             get => _viewModel.ProgressValue;
@@ -72,7 +62,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.ProgressValue));
             }
         }
-
         public TaskbarItemProgressState TaskbarProgressState
         {
             get => _viewModel.TaskbarProgressState;
@@ -82,7 +71,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.TaskbarProgressState));
             }
         }
-
         public double TaskbarProgressValue
         {
             get => _viewModel.TaskbarProgressValue;
@@ -92,49 +80,39 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.TaskbarProgressValue));
             }
         }
-
         public bool CancelEnabled
         {
             get => _viewModel.CancelEnabled;
             set
             {
                 _viewModel.CancelEnabled = value;
-
                 _viewModel.OnPropertyChanged(nameof(_viewModel.CancelButtonVisibility));
                 _viewModel.OnPropertyChanged(nameof(_viewModel.CancelEnabled));
             }
         }
         #endregion
-
         public FluentDialog(bool aero)
         {
             InitializeComponent();
-
             _viewModel = new FluentDialogViewModel(this, aero);
             DataContext = _viewModel;
             Title = App.Settings.Prop.BootstrapperTitle;
             Icon = App.Settings.Prop.BootstrapperIcon.GetIcon().GetImageSource();
-
-
             if (aero)
                 AllowsTransparency = true;
         }
-
         private void UiWindow_Closing(object sender, CancelEventArgs e)
         {
             if (!_isClosing)
                 Bootstrapper?.Cancel();
         }
-
         #region IBootstrapperDialog Methods
         public void ShowBootstrapper() => this.ShowDialog();
-
         public void CloseBootstrapper()
         {
             _isClosing = true;
             Dispatcher.BeginInvoke(this.Close);
         }
-
         public void ShowSuccess(string message, Action? callback) => BaseFunctions.ShowSuccess(message, callback);
         #endregion
     }

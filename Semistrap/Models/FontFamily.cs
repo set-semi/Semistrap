@@ -4,7 +4,6 @@ namespace Semistrap.Models
     {
         [JsonPropertyName("name")]
         public string Name { get; set; } = null!;
-
         [JsonPropertyName("faces")]
         public IEnumerable<FontFace> Faces { get; set; } = null!;
     }

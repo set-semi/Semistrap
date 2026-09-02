@@ -16,7 +16,6 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -70,7 +69,6 @@
                     </local:MarkdownTextBlock.Style>
                 </local:MarkdownTextBlock>
             </StackPanel>
-
             <ContentControl Grid.Column="1" VerticalAlignment="Center" Margin="16,0,0,0" Content="{Binding InnerContent, ElementName=Control}" />
         </Grid>
     </ui:Card>

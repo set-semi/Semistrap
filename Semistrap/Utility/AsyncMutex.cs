@@ -1,7 +1,5 @@
 namespace Semistrap.Utility
 {
-
-
     public sealed class AsyncMutex : IAsyncDisposable
     {
         private readonly bool _initiallyOwned;
@@ -9,24 +7,17 @@ namespace Semistrap.Utility
         private Task? _mutexTask;
         private ManualResetEventSlim? _releaseEvent;
         private CancellationTokenSource? _cancellationTokenSource;
-
         public AsyncMutex(bool initiallyOwned, string name)
         {
             _initiallyOwned = initiallyOwned;
             _name = name;
         }
-
         public Task AcquireAsync(CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-
             TaskCompletionSource taskCompletionSource = new();
-
             _releaseEvent = new ManualResetEventSlim();
             _cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-
-
-
             _mutexTask = Task.Factory.StartNew(
                 state =>
                 {
@@ -36,7 +27,6 @@ namespace Semistrap.Utility
                         using var mutex = new Mutex(_initiallyOwned, _name);
                         try
                         {
-
                             if (WaitHandle.WaitAny(new[] { mutex, cancellationToken.WaitHandle }) != 0)
                             {
                                 taskCompletionSource.SetCanceled(cancellationToken);
@@ -45,14 +35,9 @@ namespace Semistrap.Utility
                         }
                         catch (AbandonedMutexException)
                         {
-
                         }
-
                         taskCompletionSource.SetResult();
-
-
                         _releaseEvent.Wait();
-
                         mutex.ReleaseMutex();
                     }
                     catch (OperationCanceledException)
@@ -68,28 +53,20 @@ namespace Semistrap.Utility
                 cancellationToken,
                 TaskCreationOptions.LongRunning,
                 TaskScheduler.Default);
-
             return taskCompletionSource.Task;
         }
-
         public async Task ReleaseAsync()
         {
             _releaseEvent?.Set();
-
             if (_mutexTask != null)
             {
                 await _mutexTask;
             }
         }
-
         public async ValueTask DisposeAsync()
         {
-
             _cancellationTokenSource?.Cancel();
-
-
             await ReleaseAsync();
-
             _releaseEvent?.Dispose();
             _cancellationTokenSource?.Dispose();
         }

@@ -12,14 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using Semistrap.UI.ViewModels.Settings;
-
 namespace Semistrap.UI.Elements.Settings.Pages
 {
-
-
-
     public partial class ShortcutsPage
     {
         public ShortcutsPage()

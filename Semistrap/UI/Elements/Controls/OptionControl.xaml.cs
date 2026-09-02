@@ -13,51 +13,39 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace Semistrap.UI.Elements.Controls
 {
-
-
-
     [ContentProperty(nameof(InnerContent))]
     public partial class OptionControl : UserControl
     {
         public static readonly DependencyProperty HeaderProperty =
             DependencyProperty.Register(nameof(Header), typeof(string), typeof(OptionControl));
-
         public static readonly DependencyProperty DescriptionProperty =
             DependencyProperty.Register(nameof(Description), typeof(string), typeof(OptionControl));
-
         public static readonly DependencyProperty HelpLinkProperty =
             DependencyProperty.Register(nameof(HelpLink), typeof(string), typeof(OptionControl));
-
         public static readonly DependencyProperty InnerContentProperty =
             DependencyProperty.Register(nameof(InnerContent), typeof(object), typeof(OptionControl));
-
         public string Header
         {
             get { return (string)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
-
         public string Description
         {
             get { return (string)GetValue(DescriptionProperty); }
             set { SetValue(DescriptionProperty, value); }
         }
-
         public string HelpLink
         {
             get { return (string)GetValue(HelpLinkProperty); }
             set { SetValue(HelpLinkProperty, value); }
         }
-
         public object InnerContent
         {
             get { return GetValue(InnerContentProperty); }
             set { SetValue(InnerContentProperty, value); }
         }
-
         public OptionControl()
         {
             InitializeComponent();

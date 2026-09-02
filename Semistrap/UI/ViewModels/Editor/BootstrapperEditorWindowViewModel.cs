@@ -7,40 +7,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-
 namespace Semistrap.UI.ViewModels.Editor
 {
     public class BootstrapperEditorWindowViewModel : NotifyPropertyChangedViewModel
     {
         private CustomDialog? _dialog = null;
-
         public ICommand PreviewCommand => new RelayCommand(Preview);
         public ICommand SaveCommand => new RelayCommand(Save);
         public ICommand OpenThemeFolderCommand => new RelayCommand(OpenThemeFolder);
-
         public Action<bool, string> ThemeSavedCallback { get; set; } = null!;
-
         public string Directory { get; set; } = "";
-
         public string Name { get; set; } = "";
         public string Title { get; set; } = "Editing \"Custom Theme\"";
         public string Code { get; set; } = "";
-
         public bool CodeChanged { get; set; } = false;
-
         private void Preview()
         {
             const string LOG_IDENT = "BootstrapperEditorWindowViewModel::Preview";
-
             try
             {
                 CustomDialog dialog = new CustomDialog();
-
                 dialog.ApplyCustomTheme(Name, Code);
-
                 _dialog?.CloseBootstrapper();
                 _dialog = dialog;
-
                 dialog.Message = Strings.Bootstrapper_StylePreview_TextCancel;
                 dialog.CancelEnabled = true;
                 dialog.ShowBootstrapper();
@@ -49,17 +38,13 @@ namespace Semistrap.UI.ViewModels.Editor
             {
                 App.Logger.WriteLine(LOG_IDENT, "Failed to preview custom theme");
                 App.Logger.WriteException(LOG_IDENT, ex);
-
                 Frontend.ShowMessageBox(string.Format(Strings.CustomTheme_Editor_Errors_PreviewFailed, ex.Message), MessageBoxImage.Error, MessageBoxButton.OK);
             }
         }
-
         private void Save()
         {
             const string LOG_IDENT = "BootstrapperEditorWindowViewModel::Save";
-
             string path = Path.Combine(Directory, "Theme.xml");
-
             try
             {
                 File.WriteAllText(path, Code);
@@ -70,12 +55,9 @@ namespace Semistrap.UI.ViewModels.Editor
             {
                 App.Logger.WriteLine(LOG_IDENT, "Failed to save custom theme");
                 App.Logger.WriteException(LOG_IDENT, ex);
-
-
                 ThemeSavedCallback.Invoke(false, ex.Message);
             }
         }
-
         private void OpenThemeFolder()
         {
             Process.Start("explorer.exe", Directory);

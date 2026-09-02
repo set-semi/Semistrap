@@ -4,23 +4,15 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shell;
-
 using Semistrap.UI.Elements.Bootstrapper.Base;
 using Semistrap.UI.ViewModels.Bootstrapper;
-
 namespace Semistrap.UI.Elements.Bootstrapper
 {
-
-
-
     public partial class ByfronDialog : IBootstrapperDialog
     {
         private readonly ByfronDialogViewModel _viewModel;
-
         public Semistrap.Bootstrapper? Bootstrapper { get; set; }
-
         private bool _isClosing;
-
         #region UI Elements
         public string Message
         {
@@ -30,12 +22,10 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 string message = value;
                 if (message.EndsWith("..."))
                     message = message[..^3];
-
                 _viewModel.Message = message;
                 _viewModel.OnPropertyChanged(nameof(_viewModel.Message));
             }
         }
-
         public ProgressBarStyle ProgressStyle
         {
             get => _viewModel.ProgressIndeterminate ? ProgressBarStyle.Marquee : ProgressBarStyle.Continuous;
@@ -45,7 +35,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.ProgressIndeterminate));
             }
         }
-
         public int ProgressMaximum
         {
             get => _viewModel.ProgressMaximum;
@@ -55,7 +44,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.ProgressMaximum));
             }
         }
-
         public int ProgressValue
         {
             get => _viewModel.ProgressValue;
@@ -65,7 +53,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.ProgressValue));
             }
         }
-
         public TaskbarItemProgressState TaskbarProgressState
         {
             get => _viewModel.TaskbarProgressState;
@@ -75,7 +62,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.TaskbarProgressState));
             }
         }
-
         public double TaskbarProgressValue
         {
             get => _viewModel.TaskbarProgressValue;
@@ -85,23 +71,19 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.OnPropertyChanged(nameof(_viewModel.TaskbarProgressValue));
             }
         }
-
         public bool CancelEnabled
         {
             get => _viewModel.CancelEnabled;
             set
             {
                 _viewModel.CancelEnabled = value;
-
                 _viewModel.OnPropertyChanged(nameof(_viewModel.CancelEnabled));
                 _viewModel.OnPropertyChanged(nameof(_viewModel.CancelButtonVisibility));
-                
                 _viewModel.OnPropertyChanged(nameof(_viewModel.VersionTextVisibility));
                 _viewModel.OnPropertyChanged(nameof(_viewModel.VersionText));
             }
         }
         #endregion
-
         public ByfronDialog()
         {
             string version = Utilities.GetRobloxVersionStr(Bootstrapper?.IsStudioLaunch ?? false);
@@ -109,10 +91,8 @@ namespace Semistrap.UI.Elements.Bootstrapper
             DataContext = _viewModel;
             Title = App.Settings.Prop.BootstrapperTitle;
             Icon = App.Settings.Prop.BootstrapperIcon.GetIcon().GetImageSource();
-
             if (App.Settings.Prop.Theme.GetFinal() == Theme.Light)
             {
-
                 _viewModel.DialogBorder = new Thickness(1);
                 _viewModel.Background = new SolidColorBrush(Color.FromRgb(242, 244, 245));
                 _viewModel.Foreground = new SolidColorBrush(Color.FromRgb(57, 59, 61));
@@ -120,7 +100,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
                 _viewModel.ProgressBarBackground = new SolidColorBrush(Color.FromRgb(189, 190, 190));
                 _viewModel.ByfronLogoLocation = new BitmapImage(new Uri("pack://application:,,,/Resources/BootstrapperStyles/ByfronDialog/ByfronLogoLight.jpg"));
             }
-
             InitializeComponent();
         }
         private void Window_Closing(object sender, CancelEventArgs e)
@@ -128,17 +107,13 @@ namespace Semistrap.UI.Elements.Bootstrapper
             if (!_isClosing)
                 Bootstrapper?.Cancel();
         }
-
         #region IBootstrapperDialog Methods
-
         public void ShowBootstrapper() => this.ShowDialog();
-
         public void CloseBootstrapper()
         {
             _isClosing = true;
             Dispatcher.BeginInvoke(this.Close);
         }
-
         public void ShowSuccess(string message, Action? callback) => BaseFunctions.ShowSuccess(message, callback);
         #endregion
     }

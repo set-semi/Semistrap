@@ -1,48 +1,34 @@
 using System.Windows;
 using System.Windows.Input;
-
 using CommunityToolkit.Mvvm.Input;
-
 using Semistrap.Enums.FlagPresets;
-
 namespace Semistrap.UI.ViewModels.Settings
 {
     public class FastFlagsViewModel : NotifyPropertyChangedViewModel
     {
         private Dictionary<string, object>? _preResetFlags;
-
         public event EventHandler? RequestPageReloadEvent;
-        
         public event EventHandler? OpenFlagEditorEvent;
-
         private void OpenFastFlagEditor() => OpenFlagEditorEvent?.Invoke(this, EventArgs.Empty);
-
         public ICommand OpenFastFlagEditorCommand => new RelayCommand(OpenFastFlagEditor);
-
         public Visibility CanShowFastFlagEditor => App.IsStudioInstalled ? Visibility.Visible : Visibility.Collapsed;
-
         public bool UseFastFlagManager
         {
             get => App.Settings.Prop.UseFastFlagManager;
             set => App.Settings.Prop.UseFastFlagManager = value;
         }
-
         public IReadOnlyDictionary<MSAAMode, string?> MSAALevels => FastFlagManager.MSAAModes;
-
         public MSAAMode SelectedMSAALevel
         {
             get => MSAALevels.FirstOrDefault(x => x.Value == App.FastFlags.GetPreset("Rendering.MSAA")).Key;
             set => App.FastFlags.SetPreset("Rendering.MSAA", MSAALevels[value]);
         }
-
         public bool FixDisplayScaling
         {
             get => App.FastFlags.GetPreset("Rendering.DisableScaling") == "True";
             set => App.FastFlags.SetPreset("Rendering.DisableScaling", value ? "True" : null);
         }
-
         public IReadOnlyDictionary<TextureQuality, string?> TextureQualities => FastFlagManager.TextureQualityLevels;
-
         public TextureQuality SelectedTextureQuality
         {
             get => TextureQualities.Where(x => x.Value == App.FastFlags.GetPreset("Rendering.TextureQuality.Level")).FirstOrDefault().Key;
@@ -62,7 +48,6 @@ namespace Semistrap.UI.ViewModels.Settings
         public bool ResetConfiguration
         {
             get => _preResetFlags is not null;
-
             set
             {
                 if (value)
@@ -75,7 +60,6 @@ namespace Semistrap.UI.ViewModels.Settings
                     App.FastFlags.Prop = _preResetFlags!;
                     _preResetFlags = null;
                 }
-
                 RequestPageReloadEvent?.Invoke(this, EventArgs.Empty);
             }
         }

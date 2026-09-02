@@ -13,7 +13,6 @@
       Scrollable="True">
     <StackPanel Margin="0,0,14,14">
         <TextBlock Text="{x:Static resources:Strings.Menu_Appearance_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="0,0,0,8" />
-
         <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_Appearance_Global_Theme_Title}">
             <ComboBox Width="200" Padding="10,5,10,5" ItemsSource="{Binding Themes, Mode=OneTime}" Text="{Binding Theme, Mode=TwoWay}">
@@ -24,13 +23,11 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:OptionControl>
-
         <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_Appearance_Language_Title}"
             Description="{x:Static resources:Strings.Menu_Appearance_Language_Description}">
             <ComboBox Width="200" Padding="10,5,10,5" ItemsSource="{Binding Languages, Mode=OneTime}" Text="{Binding SelectedLanguage, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <Grid Margin="0,8,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -42,7 +39,6 @@
             </StackPanel>
             <ui:Button Grid.Column="1" Content="{x:Static resources:Strings.Menu_Appearance_Preview}" HorizontalAlignment="Stretch" Margin="0,16,0,0" Command="{Binding PreviewBootstrapperCommand}" />
         </Grid>
-        
         <ui:CardExpander Margin="0,8,0,0" IsExpanded="{Binding Path=CustomThemesExpanded, Mode=OneWay}" Style="{StaticResource NoUserExpansionCardExpanderStyle}">
             <ui:CardExpander.Header>
                 <Grid>
@@ -101,7 +97,6 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-
                         <ui:Button Grid.Column="0" Margin="0,0,4,0" Icon="Edit28" Content="{x:Static resources:Strings.Common_Rename}" HorizontalAlignment="Stretch" Command="{Binding RenameCustomThemeCommand, Mode=OneTime}" />
                         <ui:Button Grid.Column="1" Margin="4,0,4,0" Icon="DesktopEdit24" Content="{x:Static resources:Strings.Common_Edit}" HorizontalAlignment="Stretch" Command="{Binding EditCustomThemeCommand, Mode=OneTime}" />
                         <ui:Button Grid.Column="2" Margin="4,0,0,0" Icon="ArrowExportRtl24" Content="{x:Static resources:Strings.Common_Export}" HorizontalAlignment="Stretch" Command="{Binding ExportCustomThemeCommand, Mode=OneTime}" />
@@ -120,7 +115,6 @@
                 </TextBlock>
             </Grid>
         </ui:CardExpander>
-
         <controls:OptionControl 
             x:Name="IconSelector"
             Header="{x:Static resources:Strings.Menu_Appearance_Icon_Title}" 
@@ -140,7 +134,6 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:OptionControl>
-
         <ui:CardExpander Margin="0,8,0,0" IsExpanded="True">
             <ui:CardExpander.Header>
                 <Grid>

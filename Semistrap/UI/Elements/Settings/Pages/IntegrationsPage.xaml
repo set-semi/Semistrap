@@ -14,9 +14,7 @@
       Scrollable="True">
     <StackPanel Margin="0,0,14,14">
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_ActivityTracking}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Integrations_EnableActivityTracking_Title}" 
             Description="{x:Static resources:Strings.Menu_Integrations_EnableActivityTracking_Description}" 
@@ -24,7 +22,6 @@
             x:Name="ActivityTrackingOption">
             <ui:ToggleSwitch IsChecked="{Binding ActivityTrackingEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Integrations_QueryServerLocation_Title}" 
             Description="{Binding Source={x:Static resources:Strings.Menu_Integrations_QueryServerLocation_Description}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://ipinfo.io'}"
@@ -32,10 +29,8 @@
             IsEnabled="{Binding InnerContent.IsChecked, ElementName=ActivityTrackingOption, Mode=OneWay}">
             <ui:ToggleSwitch IsChecked="{Binding ShowServerDetailsEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <TextBlock Text="{x:Static resources:Strings.Common_DiscordRichPresence}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
         <controls:MarkdownTextBlock MarkdownText="{Binding Source={x:Static resources:Strings.Menu_Integrations_RequiresActivityTracking}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://semistrap.mintlify.site/'}" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Integrations_ShowGameActivity_Title}" 
             Description="{Binding Source={x:Static resources:Strings.Menu_Integrations_ShowGameActivity_Description}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://semistrap.mintlify.site/discord-rich-presence-not-working/'}"
@@ -43,21 +38,18 @@
             x:Name="DiscordActivityOption">
             <ui:ToggleSwitch IsChecked="{Binding DiscordActivityEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Integrations_AllowActivityJoining_Title}" 
             Description="{x:Static resources:Strings.Menu_Integrations_AllowActivityJoining_Description}"
             IsEnabled="{Binding InnerContent.IsChecked, ElementName=DiscordActivityOption, Mode=OneWay}">
             <ui:ToggleSwitch IsChecked="{Binding DiscordActivityJoinEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Integrations_ShowAccountOnProfile_Title}" 
             Description="{x:Static resources:Strings.Menu_Integrations_ShowAccountOnProfile_Description}"
             IsEnabled="{Binding InnerContent.IsChecked, ElementName=DiscordActivityOption, Mode=OneWay}">
             <ui:ToggleSwitch IsChecked="{Binding DiscordAccountOnProfile, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_Custom_Title}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_Custom_Description}" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
         <Grid Margin="0,8,0,0">

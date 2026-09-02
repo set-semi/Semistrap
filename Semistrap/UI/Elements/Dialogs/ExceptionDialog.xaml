@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:base="clr-namespace:Semistrap.UI.Elements.Base"
-
         xmlns:controls="clr-namespace:Semistrap.UI.Elements.Controls"
         xmlns:local="clr-namespace:Semistrap.UI.Elements.Dialogs"
         xmlns:resources="clr-namespace:Semistrap.Resources"
@@ -23,9 +22,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <ui:TitleBar Grid.Row="0" Grid.ColumnSpan="2" Padding="8" x:Name="RootTitleBar" ShowMinimize="False" ShowMaximize="False" CanMaximize="False" KeyboardNavigation.TabNavigation="None" Title="{x:Static resources:Strings.Dialog_Exception_Title}" />
-
         <Grid Grid.Row="1" Margin="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -38,11 +35,9 @@
                 <controls:MarkdownTextBlock x:Name="HelpMessageMDTextBlock" Margin="0,16,0,0" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
             </StackPanel>
         </Grid>
-
         <Border Grid.Row="2" Padding="15" Background="{ui:ThemeResource SolidBackgroundFillColorSecondaryBrush}">
             <Grid>
                 <TextBlock x:Name="VersionText" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Version 2.8.0" />
-                
                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
                     <Button x:Name="ReportExceptionButton" Content="{x:Static resources:Strings.Dialog_Exception_Report}" />
                     <Button x:Name="LocateLogFileButton" Content="{x:Static resources:Strings.Common_OpenLogFile}" Margin="12,0,0,0" />

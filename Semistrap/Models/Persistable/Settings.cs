@@ -1,10 +1,8 @@
 using System.Collections.ObjectModel;
-
 namespace Semistrap.Models.Persistable
 {
     public class Settings
     {
-
         public BootstrapperStyle BootstrapperStyle { get; set; } = BootstrapperStyle.FluentDialog;
         public BootstrapperIcon BootstrapperIcon { get; set; } = BootstrapperIcon.IconSemistrap;
         public string BootstrapperTitle { get; set; } = App.ProjectName;
@@ -20,7 +18,6 @@ namespace Semistrap.Models.Persistable
         public bool BackgroundUpdatesEnabled { get; set; } = false;
         public bool DebugDisableVersionPackageCleanup { get; set; } = false;
         public string? SelectedCustomTheme { get; set; } = null;
-
         public bool EnableActivityTracking { get; set; } = true;
         public bool UseDiscordRichPresence { get; set; } = true;
         public bool HideRPCButtons { get; set; } = true;

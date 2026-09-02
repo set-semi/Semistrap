@@ -1,5 +1,4 @@
 using System.Drawing;
-
 namespace Semistrap.Extensions
 {
     static class BootstrapperIconEx
@@ -16,21 +15,13 @@ namespace Semistrap.Extensions
             BootstrapperIcon.Icon2008,
             BootstrapperIcon.IconCustom
         };
-
-
-
-
-
         public static Icon GetIcon(this BootstrapperIcon icon)
         {
             const string LOG_IDENT = "BootstrapperIconEx::GetIcon";
-
-
             if (icon == BootstrapperIcon.IconCustom)
             {
                 Icon? customIcon = null;
                 string location = App.Settings.Prop.BootstrapperIconCustomLocation;
-
                 if (String.IsNullOrEmpty(location)) 
                 {
                     App.Logger.WriteLine(LOG_IDENT, "Warning: custom icon is not set.");
@@ -47,10 +38,8 @@ namespace Semistrap.Extensions
                         App.Logger.WriteException(LOG_IDENT, ex);
                     }
                 }
-
                 return customIcon ?? Properties.Resources.IconSemistrap;
             }
-
             return icon switch
             {
                 BootstrapperIcon.IconSemistrap => Properties.Resources.IconSemistrap,

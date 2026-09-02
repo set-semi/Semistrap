@@ -1,5 +1,4 @@
 using System.ComponentModel;
-
 namespace Semistrap.UI.ViewModels
 {
     public class NotifyPropertyChangedViewModel : INotifyPropertyChanged

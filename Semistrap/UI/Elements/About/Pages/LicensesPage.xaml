@@ -24,7 +24,6 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <ui:CardAction Grid.Row="0" Grid.Column="0" Margin="0,8,8,0" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://github.com/set-semi/Semistrap/blob/main/LICENSE">
                 <StackPanel>
                     <TextBlock FontSize="14" Text="Semistrap" />
@@ -43,7 +42,6 @@
                     <TextBlock Margin="0,2,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_About_Licenses_MIT}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                 </StackPanel>
             </ui:CardAction>
-
             <ui:CardAction Grid.Row="1" Grid.Column="0" Margin="0,8,8,0" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://github.com/Lachee/discord-rpc-csharp/blob/master/LICENSE">
                 <StackPanel>
                     <TextBlock FontSize="14" Text="DiscordRPC" />
@@ -62,7 +60,6 @@
                     <TextBlock Margin="0,2,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_About_Licenses_MIT}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                 </StackPanel>
             </ui:CardAction>
-
             <ui:CardAction Grid.Row="2" Grid.Column="0" Margin="0,8,8,0" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://github.com/xoofx/markdig/blob/master/license.txt">
                 <StackPanel>
                     <TextBlock FontSize="14" Text="Markdig" />

@@ -1,5 +1,4 @@
 using Microsoft.Win32;
-
 namespace Semistrap.Extensions
 {
     public static class RegistryKeyEx
@@ -17,7 +16,6 @@ namespace Semistrap.Extensions
                 App.Terminate(ErrorCode.ERROR_INSTALL_FAILURE);
             }
         }
-
         public static void DeleteValueSafe(this RegistryKey registryKey, string name)
         {
             try

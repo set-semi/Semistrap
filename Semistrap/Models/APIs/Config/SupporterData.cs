@@ -4,7 +4,6 @@ namespace Semistrap.Models.APIs.Config
     {
         [JsonPropertyName("monthly")]
         public SupporterGroup Monthly { get; set; } = new();
-
         [JsonPropertyName("oneoff")]
         public SupporterGroup OneOff { get; set; } = new();
     }

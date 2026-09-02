@@ -12,21 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Semistrap.UI.ViewModels.Dialogs;
-
 namespace Semistrap.UI.Elements.Dialogs
 {
-
-
-
     public partial class LanguageSelectorDialog
     {
         public LanguageSelectorDialog()
         {
             var viewModel = new LanguageSelectorViewModel();
-
             DataContext = viewModel;
             InitializeComponent();
-
             viewModel.CloseRequestEvent += (_, _) => Close();
         }
     }

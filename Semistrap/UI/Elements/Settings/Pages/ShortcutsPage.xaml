@@ -13,42 +13,33 @@
       d:DesignHeight="600" d:DesignWidth="800"
       Title="ShortcutsPage"
       Scrollable="True">
-
     <StackPanel Margin="0,0,14,14">
         <TextBlock Margin="0,0,0,16" Text="{x:Static resources:Strings.Menu_Shortcuts_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Shortcuts_ExtractIcons_Title}" 
             Description="{Binding Source={x:Static resources:Strings.Menu_Shortcuts_ExtractIcons_Description}, Converter={StaticResource StringFormatConverter},ConverterParameter='https://semistrap.mintlify.site/'}"
             Margin="0,0,0,16">
             <ui:ToggleSwitch IsChecked="{Binding ExtractIconsTask.NewState, Mode=TwoWay}" />
         </controls:OptionControl>
-
         <TextBlock Text="{x:Static resources:Strings.Menu_Shortcuts_General_Title}" FontSize="20" FontWeight="Medium" />
         <TextBlock Text="{x:Static resources:Strings.Menu_Shortcuts_General_Description}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <controls:OptionControl Grid.Column="0" Margin="0,0,4,0" Header="{x:Static resources:Strings.Common_Shortcuts_Desktop}">
                 <ui:ToggleSwitch IsChecked="{Binding DesktopIconTask.NewState, Mode=TwoWay}" />
             </controls:OptionControl>
-
             <controls:OptionControl Grid.Column="1" Margin="4,0,0,0" Header="{x:Static resources:Strings.Common_Shortcuts_StartMenu}">
                 <ui:ToggleSwitch IsChecked="{Binding StartMenuIconTask.NewState, Mode=TwoWay}" />
             </controls:OptionControl>
         </Grid>
-
         <TextBlock Text="{x:Static resources:Strings.Menu_Shortcuts_Function_Title}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
         <TextBlock Text="{x:Static resources:Strings.Menu_Shortcuts_Function_Description}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <!-- https://stackoverflow.com/a/51967350 -->
                 <ColumnDefinition>
                     <ColumnDefinition.Style>
                         <Style TargetType="ColumnDefinition">
@@ -63,15 +54,12 @@
                 </ColumnDefinition>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <controls:OptionControl Grid.Column="0" Margin="0,0,2,0" Header="{x:Static resources:Strings.LaunchMenu_LaunchRoblox}">
                 <ui:ToggleSwitch IsChecked="{Binding PlayerIconTask.NewState, Mode=TwoWay}" />
             </controls:OptionControl>
-
             <controls:OptionControl Grid.Column="1" Margin="2,0,2,0" Header="{x:Static resources:Strings.LaunchMenu_LaunchRobloxStudio}">
                 <ui:ToggleSwitch IsChecked="{Binding StudioIconTask.NewState, Mode=TwoWay}" />
             </controls:OptionControl>
-
             <controls:OptionControl Grid.Column="2" Margin="2,0,0,0" Header="{x:Static resources:Strings.Menu_Title}">
                 <ui:ToggleSwitch IsChecked="{Binding SettingsIconTask.NewState, Mode=TwoWay}" />
             </controls:OptionControl>

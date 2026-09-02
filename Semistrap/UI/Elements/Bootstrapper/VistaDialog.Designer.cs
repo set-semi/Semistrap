@@ -2,15 +2,7 @@ namespace Semistrap.UI.Elements.Bootstrapper
 {
     partial class VistaDialog
     {
-
-
-
         private System.ComponentModel.IContainer components = null;
-
-
-
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -19,19 +11,10 @@ namespace Semistrap.UI.Elements.Bootstrapper
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
-
-
-
-
         private void InitializeComponent()
         {
             this.SuspendLayout();
-
-
-
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(0, 0);
@@ -44,9 +27,7 @@ namespace Semistrap.UI.Elements.Bootstrapper
             this.Load += new System.EventHandler(this.VistaDialog_Load);
             this.FormClosing += this.Dialog_FormClosing;
             this.ResumeLayout(false);
-
         }
-
         #endregion
     }
 }

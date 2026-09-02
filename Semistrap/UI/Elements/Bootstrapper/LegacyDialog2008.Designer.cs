@@ -1,18 +1,9 @@
 using System.Windows.Forms;
-
 namespace Semistrap.UI.Elements.Bootstrapper
 {
     partial class LegacyDialog2008
     {
-
-
-
         private System.ComponentModel.IContainer components = null;
-
-
-
-
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,40 +12,25 @@ namespace Semistrap.UI.Elements.Bootstrapper
             }
             base.Dispose(disposing);
         }
-
         #region Windows Form Designer generated code
-
-
-
-
-
         private void InitializeComponent()
         {
             labelMessage = new Label();
             ProgressBar = new ProgressBar();
             buttonCancel = new Button();
             SuspendLayout();
-
-
-
             labelMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             labelMessage.Location = new System.Drawing.Point(12, 16);
             labelMessage.Name = "labelMessage";
             labelMessage.Size = new System.Drawing.Size(287, 17);
             labelMessage.TabIndex = 0;
             labelMessage.Text = "Please wait...";
-
-
-
             ProgressBar.Location = new System.Drawing.Point(15, 47);
             ProgressBar.MarqueeAnimationSpeed = 33;
             ProgressBar.Name = "ProgressBar";
             ProgressBar.Size = new System.Drawing.Size(281, 20);
             ProgressBar.Style = ProgressBarStyle.Marquee;
             ProgressBar.TabIndex = 1;
-
-
-
             buttonCancel.Enabled = false;
             buttonCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             buttonCancel.Location = new System.Drawing.Point(221, 83);
@@ -64,9 +40,6 @@ namespace Semistrap.UI.Elements.Bootstrapper
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += ButtonCancel_Click;
-
-
-
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(311, 122);
@@ -86,9 +59,7 @@ namespace Semistrap.UI.Elements.Bootstrapper
             Load += LegacyDialog2008_Load;
             ResumeLayout(false);
         }
-
         #endregion
-
         private Label labelMessage;
         private ProgressBar ProgressBar;
         private Button buttonCancel;

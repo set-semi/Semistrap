@@ -7,7 +7,6 @@ namespace Semistrap.Models.Attributes
         public string Machine { get; set; }
         public string CommitHash { get; set; }
         public string CommitRef { get; set; }
-
         public BuildMetadataAttribute(string timestamp, string machine, string commitHash, string commitRef)
         {
             Timestamp = DateTime.Parse(timestamp).ToLocalTime();

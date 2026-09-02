@@ -18,20 +18,16 @@
     WindowBackdropType="Mica"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo ProgressState="{Binding Path=TaskbarProgressState}" ProgressValue="{Binding Path=TaskbarProgressValue}" />
     </Window.TaskbarItemInfo>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
         <ui:TitleBar Grid.Row="0" x:Name="RootTitleBar" Padding="8" Title="{Binding Title, Mode=OneTime}" ShowMinimize="False" ShowMaximize="False" CanMaximize="False" ShowClose="False" />
-
         <ui:TitleBar
             Grid.Row="0"
             VerticalAlignment="Top"
@@ -39,7 +35,6 @@
             ShowClose="False"
             ShowMaximize="False"
             ShowMinimize="False" />
-
         <Grid Grid.Row="1" Margin="16,0,16,0" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -51,7 +46,6 @@
                 <ProgressBar Margin="16,16,0,16" IsIndeterminate="{Binding ProgressIndeterminate, Mode=OneWay}" Maximum="{Binding ProgressMaximum, Mode=OneWay}" Value="{Binding ProgressValue, Mode=OneWay}" />
             </StackPanel>
         </Grid>
-
         <Border Grid.Row="2" Padding="15">
             <Border.Background>
                 <SolidColorBrush Color="{ui:ThemeResource SolidBackgroundFillColorSecondary}" Opacity="{Binding FooterOpacity, Mode=OneTime}" />

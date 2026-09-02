@@ -14,51 +14,39 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Common;
-
 namespace Semistrap.UI.Elements.Controls
 {
-
-
-
   [ContentProperty(nameof(InnerContent))]
   public partial class Expander : UserControl
   {
     public static readonly DependencyProperty IsExpandedProperty =
         DependencyProperty.Register(nameof(IsExpanded), typeof(bool), typeof(Expander));
-        
     public static readonly DependencyProperty HeaderIconProperty =
         DependencyProperty.Register(nameof(HeaderIcon), typeof(SymbolRegular), typeof(Expander));
-
     public static readonly DependencyProperty HeaderTextProperty =
         DependencyProperty.Register(nameof(HeaderText), typeof(string), typeof(Expander));
-
     public static readonly DependencyProperty InnerContentProperty =
         DependencyProperty.Register(nameof(InnerContent), typeof(object), typeof(Expander));
-
     public bool IsExpanded
     {
       get { return (bool)GetValue(IsExpandedProperty); }
       set { SetValue(IsExpandedProperty, value); }
     }
-
     public string HeaderText
     {
       get { return (string)GetValue(HeaderTextProperty); }
       set { SetValue(HeaderTextProperty, value); }
     }
-
     public SymbolRegular HeaderIcon
     {
       get { return (SymbolRegular)GetValue(HeaderIconProperty); }
       set { SetValue(HeaderTextProperty, value); }
     }
-
     public object InnerContent
     {
       get { return GetValue(InnerContentProperty); }
       set { SetValue(InnerContentProperty, value); }
     }
-
     public Expander()
     {
       InitializeComponent();

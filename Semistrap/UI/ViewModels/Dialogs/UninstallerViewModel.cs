@@ -1,8 +1,6 @@
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-
 using Semistrap.Resources;
-
 namespace Semistrap.UI.ViewModels.Dialogs
 {
     public class UninstallerViewModel
@@ -12,13 +10,9 @@ namespace Semistrap.UI.ViewModels.Dialogs
             null,
             Paths.Base
         );
-
         public bool KeepData { get; set; } = true;
-
         public ICommand ConfirmUninstallCommand => new RelayCommand(ConfirmUninstall);
-
         public event EventHandler? ConfirmUninstallRequest;
-
         private void ConfirmUninstall() => ConfirmUninstallRequest?.Invoke(this, new EventArgs());
     }
 }

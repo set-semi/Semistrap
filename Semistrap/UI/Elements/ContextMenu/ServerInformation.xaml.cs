@@ -11,15 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 using Semistrap.Integrations;
 using Semistrap.UI.ViewModels.ContextMenu;
-
 namespace Semistrap.UI.Elements.ContextMenu
 {
-
-
-
     public partial class ServerInformation
     {
         public ServerInformation(Watcher watcher)

@@ -14,25 +14,20 @@
       Title="AboutPage"
       KeyDown="UiPage_KeyDown"
       Scrollable="True">
-
     <ui:UiPage.Resources>
         <Storyboard x:Key="EggStoryboard">
             <DoubleAnimation Storyboard.TargetName="Image1" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:3" />
             <DoubleAnimation Storyboard.TargetName="Image2" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:3" />
         </Storyboard>
     </ui:UiPage.Resources>
-
     <StackPanel Margin="0,0,14,14">
-
         <Grid Margin="0,0,0,24" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <Image x:Name="Image1" Grid.Column="0" Width="72" Height="72" VerticalAlignment="Center" Source="pack://application:,,,/Semistrap.ico" RenderOptions.BitmapScalingMode="HighQuality" />
             <Image x:Name="Image2" Grid.Column="0" Width="72" Height="72" VerticalAlignment="Center" Source="pack://application:,,,/Resources/BootstrapperStyles/ByfronDialog/Matt.png" RenderOptions.BitmapScalingMode="HighQuality" Opacity="0" />
-            
             <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -45,17 +40,14 @@
                 <TextBlock Text="{x:Static resources:Strings.Menu_About_Description}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
             </StackPanel>
         </Grid>
-
         <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
             <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" Icon="Code24" NavigateUri="https://github.com/set-semi/Semistrap" />
             <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_HelpInformation}" Icon="BookQuestionMark24" NavigateUri="https://semistrap.mintlify.site/" />
             <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_ReportIssue}" Icon="BookExclamationMark24" NavigateUri="https://tally.so/r/yPalGp" />
             <ui:Anchor Margin="0,0,0,8" Content="{x:Static resources:Strings.Menu_About_DiscordServer}" Icon="Chat48" NavigateUri="https://discord.gg/s3QW8b6PUf" />
         </WrapPanel>
-
         <StackPanel Visibility="{Binding BuildInformationVisibility, Mode=OneTime}">
             <TextBlock Text="Build Information" FontWeight="Medium" FontSize="20" Margin="0,16,0,0" />
-
             <Grid Column="0" Margin="0,8,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -67,20 +59,16 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
                 <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,4,16,4" FontSize="14" FontWeight="Medium" Text="Timestamp" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,0,4" VerticalAlignment="Bottom" Text="{Binding BuildTimestamp, Mode=OneTime}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
-
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,4,16,4" FontSize="14" FontWeight="Medium" Text="Machine" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,4" VerticalAlignment="Bottom" Text="{Binding BuildMetadata.Machine, Mode=OneTime}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
-
                 <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,4,16,4" FontSize="14" FontWeight="Medium" Text="Commit Hash" Visibility="{Binding BuildCommitVisibility, Mode=OneTime}" />
                 <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,0,0,4" VerticalAlignment="Bottom" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Visibility="{Binding BuildCommitVisibility, Mode=OneTime}">
                   <Hyperlink Foreground="{DynamicResource TextFillColorTertiaryBrush}" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="{Binding BuildCommitHashUrl, Mode=OneTime}">
                     <TextBlock Text="{Binding BuildMetadata.CommitHash, Mode=OneTime}" />
                   </Hyperlink>
                 </TextBlock>
-
                 <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,4,16,4" FontSize="14" FontWeight="Medium" Text="Commit Ref" Visibility="{Binding BuildCommitVisibility, Mode=OneTime}" />
                 <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,0,0,4" VerticalAlignment="Bottom" Text="{Binding BuildMetadata.CommitRef, Mode=OneTime}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Visibility="{Binding BuildCommitVisibility, Mode=OneTime}" />
             </Grid>

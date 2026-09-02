@@ -1,51 +1,28 @@
 using System.Windows;
 using Microsoft.Win32;
-
 namespace Semistrap
 {
     internal class Installer
     {
-
-
-
         private const bool OpenReleaseNotes = true;
-
-
-
-
         private const string ForcedReleaseNotesVersion = "2.11.2";
-
         private static string DesktopShortcut => Path.Combine(Paths.Desktop, $"{App.ProjectName}.lnk");
-
         private static string StartMenuShortcut => Path.Combine(Paths.WindowsStartMenu, $"{App.ProjectName}.lnk");
-
         public string InstallLocation = Path.Combine(Paths.LocalAppData, App.ProjectName);
-
         public bool ExistingDataPresent => File.Exists(Path.Combine(InstallLocation, "Settings.json"));
-
         public bool CreateDesktopShortcuts = true;
-
         public bool CreateStartMenuShortcuts = true;
-
         public bool IsImplicitInstall = false;
-
         public string InstallLocationError { get; set; } = "";
-
         public void DoInstall()
         {
             const string LOG_IDENT = "Installer::DoInstall";
-
             App.Logger.WriteLine(LOG_IDENT, "Beginning installation");
-
-
             Directory.CreateDirectory(InstallLocation);
-
             Paths.Initialize(InstallLocation);
-
             if (!IsImplicitInstall)
             {
                 Filesystem.AssertReadOnly(Paths.Application);
-
                 try
                 {
                     File.Copy(Paths.Process, Paths.Application, true);
@@ -54,22 +31,17 @@ namespace Semistrap
                 {
                     App.Logger.WriteLine(LOG_IDENT, "Could not overwrite executable");
                     App.Logger.WriteException(LOG_IDENT, ex);
-
                     Frontend.ShowMessageBox(Strings.Installer_Install_CannotOverwrite, MessageBoxImage.Error);
                     App.Terminate(ErrorCode.ERROR_INSTALL_FAILURE);
                 }
             }
-
             using (var uninstallKey = Registry.CurrentUser.CreateSubKey(App.UninstallKey))
             {
                 uninstallKey.SetValueSafe("DisplayIcon", $"{Paths.Application},0");
                 uninstallKey.SetValueSafe("DisplayName", App.ProjectName);
-
                 uninstallKey.SetValueSafe("DisplayVersion", App.Version);
-
                 if (uninstallKey.GetValue("InstallDate") is null)
                     uninstallKey.SetValueSafe("InstallDate", DateTime.Now.ToString("yyyyMMdd"));
-
                 uninstallKey.SetValueSafe("InstallLocation", Paths.Base);
                 uninstallKey.SetValueSafe("NoRepair", 1);
                 uninstallKey.SetValueSafe("Publisher", App.ProjectOwner);
@@ -80,60 +52,36 @@ namespace Semistrap
                 uninstallKey.SetValueSafe("URLInfoAbout", App.ProjectSupportLink);
                 uninstallKey.SetValueSafe("URLUpdateInfo", App.ProjectDownloadLink);
             }
-
-
-
-
             WindowsRegistry.RegisterPlayer();
-
             if (App.IsStudioInstalled)
                 WindowsRegistry.RegisterStudio();
-
             if (CreateDesktopShortcuts)
                 Shortcut.Create(Paths.Application, "", DesktopShortcut);
-
             if (CreateStartMenuShortcuts)
                 Shortcut.Create(Paths.Application, "", StartMenuShortcut);
-
-
             App.Settings.Load(false);
             App.State.Load(false);
             App.FastFlags.Load(false);
-
             App.Settings.Save();
-
             App.Logger.WriteLine(LOG_IDENT, "Installation finished");
         }
-
         private bool ValidateLocation()
         {
-
             if (InstallLocation.Length <= 3)
                 return false;
-
-
             if (InstallLocation.StartsWith("\\\\"))
                 return false;
-
             if (InstallLocation.StartsWith(Path.GetTempPath(), StringComparison.InvariantCultureIgnoreCase)
                 || InstallLocation.Contains("\\Temp\\", StringComparison.InvariantCultureIgnoreCase))
                 return false;
-
-
             if (InstallLocation.Contains("OneDrive", StringComparison.InvariantCultureIgnoreCase))
                 return false;
-
-
             if (String.Compare(Directory.GetParent(InstallLocation)?.FullName, Paths.UserProfile, StringComparison.InvariantCultureIgnoreCase) == 0)
                 return false;
-
-
             if (InstallLocation.Contains("Program Files"))
                 return false;
-
             return true;
         }
-
         public bool CheckInstallLocation()
         {
             if (string.IsNullOrEmpty(InstallLocation))
@@ -152,25 +100,20 @@ namespace Semistrap
                     && Directory.EnumerateFileSystemEntries(InstallLocation).Any())
                 {
                     string suggestedChange = Path.Combine(InstallLocation, App.ProjectName);
-
                     MessageBoxResult result = Frontend.ShowMessageBox(
                         String.Format(Strings.Menu_InstallLocation_NotEmpty, suggestedChange),
                         MessageBoxImage.Warning,
                         MessageBoxButton.YesNoCancel,
                         MessageBoxResult.Yes
                     );
-
                     if (result == MessageBoxResult.Yes)
                         InstallLocation = suggestedChange;
                     else if (result == MessageBoxResult.Cancel || result == MessageBoxResult.None)
                         return false;
                 }
-
                 try
                 {
-
                     string testFile = Path.Combine(InstallLocation, $"{App.ProjectName}WriteTest.txt");
-
                     Directory.CreateDirectory(InstallLocation);
                     File.WriteAllText(testFile, "");
                     File.Delete(testFile);
@@ -184,23 +127,16 @@ namespace Semistrap
                     InstallLocationError = ex.Message;
                 }
             }
-
             return String.IsNullOrEmpty(InstallLocationError);
         }
-
         public static void DoUninstall(bool keepData)
         {
             const string LOG_IDENT = "Installer::DoUninstall";
-
             var processes = new List<Process>();
-            
             if (!String.IsNullOrEmpty(App.PlayerState.Prop.VersionGuid))
                 processes.AddRange(Process.GetProcessesByName(App.RobloxPlayerAppName));
-
             if (App.IsStudioInstalled)
                 processes.AddRange(Process.GetProcessesByName(App.RobloxStudioAppName));
-
-
             if (processes.Any())
             {
                 var result = Frontend.ShowMessageBox(
@@ -209,13 +145,11 @@ namespace Semistrap
                     MessageBoxButton.OKCancel,
                     MessageBoxResult.OK
                 );
-
                 if (result != MessageBoxResult.OK)
                 {
                     App.Terminate(ErrorCode.ERROR_CANCELLED);
                     return;
                 }
-
                 try
                 {
                     foreach (var process in processes)
@@ -229,39 +163,29 @@ namespace Semistrap
                     App.Logger.WriteLine(LOG_IDENT, $"Failed to close process! {ex}");
                 }
             }
-
             string robloxFolder = Path.Combine(Paths.LocalAppData, "Roblox");
             bool playerStillInstalled = true;
             bool studioStillInstalled = true;
-
-
             using var playerKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\roblox-player");
             var playerFolder = playerKey?.GetValue("InstallLocation");
-
             if (playerKey is null || playerFolder is not string)
             {
                 playerStillInstalled = false;
-
                 WindowsRegistry.Unregister("roblox");
                 WindowsRegistry.Unregister("roblox-player");
             }
             else
             {
                 string playerPath = Path.Combine((string)playerFolder, "RobloxPlayerBeta.exe");
-
                 WindowsRegistry.RegisterPlayer(playerPath, "%1");
             }
-
             using var studioKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\roblox-studio");
             var studioFolder = studioKey?.GetValue("InstallLocation");
-
             if (studioKey is null || studioFolder is not string)
             {
                 studioStillInstalled = false;
-
                 WindowsRegistry.Unregister("roblox-studio");
                 WindowsRegistry.Unregister("roblox-studio-auth");
-
                 WindowsRegistry.Unregister("Roblox.Place");
                 WindowsRegistry.Unregister(".rbxl");
                 WindowsRegistry.Unregister(".rbxlx");
@@ -270,11 +194,9 @@ namespace Semistrap
             {
                 string studioPath = Path.Combine((string)studioFolder, "RobloxStudioBeta.exe");
                 string studioLauncherPath = Path.Combine((string)studioFolder, "RobloxStudioLauncherBeta.exe");
-
                 WindowsRegistry.RegisterStudioProtocol(studioPath, "%1");
                 WindowsRegistry.RegisterStudioFileClass(studioPath, "-ide \"%1\"");
             }
-
             var cleanupSequence = new List<Action>
             {
                 () =>
@@ -282,41 +204,30 @@ namespace Semistrap
                     foreach (var file in Directory.GetFiles(Paths.Desktop).Where(x => x.EndsWith("lnk")))
                     {
                         var shortcut = ShellLink.Shortcut.ReadFromFile(file);
-
                         if (shortcut.ExtraData.EnvironmentVariableDataBlock?.TargetUnicode == Paths.Application)
                             File.Delete(file);
                     }
                 },
-
                 () => File.Delete(StartMenuShortcut),
-
                 () => Directory.Delete(Paths.Versions, true),
                 () => Directory.Delete(Paths.Downloads, true),
-
                 () => File.Delete(App.State.FileLocation)
             };
-
             if (!keepData)
             {
                 cleanupSequence.AddRange(new List<Action>
                 {
                     () => Directory.Delete(Paths.Modifications, true),
                     () => Directory.Delete(Paths.Logs, true),
-
                     () => File.Delete(App.Settings.FileLocation)
                 });
             }
-
             bool deleteFolder = Directory.GetFiles(Paths.Base).Length <= 3;
-
             if (deleteFolder)
                 cleanupSequence.Add(() => Directory.Delete(Paths.Base, true));
-
             if (!playerStillInstalled && !studioStillInstalled && Directory.Exists(robloxFolder))
                 cleanupSequence.Add(() => Directory.Delete(robloxFolder, true));
-
             cleanupSequence.Add(() => Registry.CurrentUser.DeleteSubKey(App.UninstallKey));
-
             foreach (var process in cleanupSequence)
             {
                 try
@@ -329,18 +240,13 @@ namespace Semistrap
                     App.Logger.WriteException(LOG_IDENT, ex);
                 }
             }
-
             if (Directory.Exists(Paths.Base))
             {
-
-
                 string deleteCommand;
-
                 if (deleteFolder)
                     deleteCommand = $"del /Q \"{Paths.Base}\\*\" && rmdir \"{Paths.Base}\"";
                 else
                     deleteCommand = $"del /Q \"{Paths.Application}\"";
-
                 Process.Start(new ProcessStartInfo()
                 {
                     FileName = "cmd.exe",
@@ -350,26 +256,19 @@ namespace Semistrap
                 });
             }
         }
-
         public static void HandleUpgrade()
         {
             const string LOG_IDENT = "Installer::HandleUpgrade";
-
             if (!File.Exists(Paths.Application) || Paths.Process == Paths.Application)
                 return;
-
-
             bool isAutoUpgrade = App.LaunchSettings.UpgradeFlag.Active
                 || Paths.Process.StartsWith(Path.Combine(Paths.Base, "Updates"))
                 || Paths.Process.StartsWith(Path.Combine(Paths.LocalAppData, "Temp"))
                 || Paths.Process.StartsWith(Paths.TempUpdates);
-
             var existingVer = FileVersionInfo.GetVersionInfo(Paths.Application).ProductVersion;
             var currentVer = FileVersionInfo.GetVersionInfo(Paths.Process).ProductVersion;
-
             if (MD5Hash.FromFile(Paths.Process) == MD5Hash.FromFile(Paths.Application))
                 return;
-
             if (currentVer is not null && existingVer is not null && Utilities.CompareVersions(currentVer, existingVer) == VersionComparison.LessThan)
             {
                 var result = Frontend.ShowMessageBox(
@@ -377,12 +276,9 @@ namespace Semistrap
                     MessageBoxImage.Question,
                     MessageBoxButton.YesNo
                 );
-
                 if (result != MessageBoxResult.Yes)
                     return;
             }
-
-
             if (!isAutoUpgrade)
             {
                 var result = Frontend.ShowMessageBox(
@@ -390,15 +286,11 @@ namespace Semistrap
                     MessageBoxImage.Question,
                     MessageBoxButton.YesNo
                 );
-
                 if (result != MessageBoxResult.Yes)
                     return;
             }
-
             App.Logger.WriteLine(LOG_IDENT, "Doing upgrade");
-
             Filesystem.AssertReadOnly(Paths.Application);
-
             using (var ipl = new InterProcessLock("AutoUpdater", TimeSpan.FromSeconds(5)))
             {
                 if (!ipl.IsAcquired)
@@ -407,9 +299,6 @@ namespace Semistrap
                     return;
                 }
             }
-
-
-
             for (int i = 1; i <= 10; i++)
             {
                 try
@@ -429,29 +318,22 @@ namespace Semistrap
                         App.Logger.WriteException(LOG_IDENT, ex);
                         return;
                     }
-
                     Thread.Sleep(500);
                 }
             }
-
             using (var uninstallKey = Registry.CurrentUser.CreateSubKey(App.UninstallKey))
             {
                 uninstallKey.SetValueSafe("DisplayVersion", App.Version);
-
                 uninstallKey.SetValueSafe("Publisher", App.ProjectOwner);
                 uninstallKey.SetValueSafe("HelpLink", App.ProjectHelpLink);
                 uninstallKey.SetValueSafe("URLInfoAbout", App.ProjectSupportLink);
                 uninstallKey.SetValueSafe("URLUpdateInfo", App.ProjectDownloadLink);
             }
-
-
-
             if (existingVer is not null)
             {
                 if (Utilities.CompareVersions(existingVer, "2.2.0") == VersionComparison.LessThan)
                 {
                     string path = Path.Combine(Paths.Integrations, "rbxfpsunlocker");
-
                     try
                     {
                         if (Directory.Exists(path))
@@ -462,49 +344,38 @@ namespace Semistrap
                         App.Logger.WriteException(LOG_IDENT, ex);
                     }
                 }
-
                 if (Utilities.CompareVersions(existingVer, "2.3.0") == VersionComparison.LessThan)
                 {
                     string injectorLocation = Path.Combine(Paths.Modifications, "dxgi.dll");
                     string configLocation = Path.Combine(Paths.Modifications, "ReShade.ini");
-
                     if (File.Exists(injectorLocation))
                         File.Delete(injectorLocation);
-
                     if (File.Exists(configLocation))
                         File.Delete(configLocation);
                 }
-
                 if (Utilities.CompareVersions(existingVer, "2.6.0") == VersionComparison.LessThan)
                 {
                     App.Settings.Prop.EnableActivityTracking = true;
-
                     if (App.Settings.Prop.BootstrapperStyle == BootstrapperStyle.ClassicFluentDialog)
                         App.Settings.Prop.BootstrapperStyle = BootstrapperStyle.FluentDialog;
                 }
-
                 if (Utilities.CompareVersions(existingVer, "2.8.0") == VersionComparison.LessThan)
                 {
                     if (isAutoUpgrade)
                     {
                         if (App.LaunchSettings.Args.Length == 0)
                             App.LaunchSettings.RobloxLaunchMode = LaunchMode.Player;
-
                         string? query = App.LaunchSettings.Args.FirstOrDefault(x => x.Contains("roblox"));
-
                         if (query is not null)
                         {
                             App.LaunchSettings.RobloxLaunchMode = LaunchMode.Player;
                             App.LaunchSettings.RobloxLaunchArgs = query;
                         }
                     }
-
                     string oldDesktopPath = Path.Combine(Paths.Desktop, "Play Roblox.lnk");
                     string oldStartPath = Path.Combine(Paths.WindowsStartMenu, "Semistrap");
-
                     if (File.Exists(oldDesktopPath))
                         File.Move(oldDesktopPath, DesktopShortcut, true);
-
                     if (Directory.Exists(oldStartPath))
                     {
                         try
@@ -515,19 +386,14 @@ namespace Semistrap
                         {
                             App.Logger.WriteException(LOG_IDENT, ex);
                         }
-
                         Shortcut.Create(Paths.Application, "", StartMenuShortcut);
                     }
-
                     Registry.CurrentUser.DeleteSubKeyTree("Software\\Semistrap", false);
-
                     WindowsRegistry.RegisterPlayer();
                 }
-
                 if (Utilities.CompareVersions(existingVer, "2.8.2") == VersionComparison.LessThan)
                 {
                     string robloxDirectory = Path.Combine(Paths.Base, "Roblox");
-
                     if (Directory.Exists(robloxDirectory))
                     {
                         try
@@ -541,11 +407,9 @@ namespace Semistrap
                         }
                     }
                 }
-
                 if (Utilities.CompareVersions(existingVer, "2.11.0") == VersionComparison.LessThan)
                 {
                     JsonManager<RobloxState> legacyRobloxState = new();
-
                     if (legacyRobloxState.IsSaved)
                     {
                         if (legacyRobloxState.Load(false))
@@ -554,36 +418,28 @@ namespace Semistrap
                             App.PlayerState.Prop.PackageHashes = legacyRobloxState.Prop.Player.PackageHashes;
                             App.PlayerState.Prop.Size = legacyRobloxState.Prop.Player.Size;
                             App.PlayerState.Prop.ModManifest = legacyRobloxState.Prop.ModManifest;
-
                             App.StudioState.Prop.VersionGuid = legacyRobloxState.Prop.Studio.VersionGuid;
                             App.StudioState.Prop.PackageHashes = legacyRobloxState.Prop.Studio.PackageHashes;
                             App.StudioState.Prop.Size = legacyRobloxState.Prop.Studio.Size;
                         }
-
                         legacyRobloxState.Delete();
                     }
                 }
-
                 if (Utilities.CompareVersions(existingVer, "2.11.3") == VersionComparison.LessThan)
                 {
                     App.FastFlags.SetValue("FFlagDebugGraphicsPreferD3D11", null);
                     App.FastFlags.SetValue("FFlagDebugGraphicsPreferD3D11FL10", null);
                 }
-
                 App.Settings.Save();
                 App.FastFlags.Save();
                 App.State.Save();
-
                 if (App.PlayerState.Loaded)
                     App.PlayerState.Save();
-
                 if (App.StudioState.Loaded)
                     App.StudioState.Save();
             }
-
             if (currentVer is null)
                 return;
-
             if (isAutoUpgrade)
             {
 #pragma warning disable CS0162
@@ -594,19 +450,16 @@ namespace Semistrap
                     {
                         if (!string.IsNullOrEmpty(existingVer))
                         {
-
                             VersionComparison compareResult = Utilities.CompareVersions(existingVer, ForcedReleaseNotesVersion);
                             if (compareResult == VersionComparison.Equal || compareResult == VersionComparison.GreaterThan)
                                 return;
                         }
-
                         releaseNoteVersion = ForcedReleaseNotesVersion;
                     }
                     else
                     {
                         releaseNoteVersion = currentVer;
                     }
-
                     Utilities.ShellExecute($"https://semistrap.mintlify.site/");
                 }
 #pragma warning restore CS0162

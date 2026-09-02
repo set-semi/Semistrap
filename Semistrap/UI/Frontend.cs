@@ -1,8 +1,6 @@
 using System.Windows;
-
 using Semistrap.UI.Elements.Bootstrapper;
 using Semistrap.UI.Elements.Dialogs;
-
 namespace Semistrap.UI
 {
     static class Frontend
@@ -10,59 +8,46 @@ namespace Semistrap.UI
         public static MessageBoxResult ShowMessageBox(string message, MessageBoxImage icon = MessageBoxImage.None, MessageBoxButton buttons = MessageBoxButton.OK, MessageBoxResult defaultResult = MessageBoxResult.None)
         {
             App.Logger.WriteLine("Frontend::ShowMessageBox", message);
-
             if (App.LaunchSettings.QuietFlag.Active)
                 return defaultResult;
-
             return ShowFluentMessageBox(message, icon, buttons);
         }
-
         public static void ShowPlayerErrorDialog(bool crash = false)
         {
             if (App.LaunchSettings.QuietFlag.Active)
                 return;
-
             string info = String.Format(
                 Strings.Dialog_PlayerError_FailedLaunch,
                 $"https://semistrap.mintlify.site/"
             );
-
             ShowMessageBox(info, MessageBoxImage.Error);
         }
-
         public static void ShowExceptionDialog(Exception exception)
         {
             if (App.LaunchSettings.QuietFlag.Active)
                 return;
-
             Application.Current.Dispatcher.Invoke(() =>
             {
                 new ExceptionDialog(exception).ShowDialog();
             });
         }
-
         public static void ShowConnectivityDialog(string title, string description, MessageBoxImage image, Exception exception)
         {
             if (App.LaunchSettings.QuietFlag.Active)
                 return;
-
             Application.Current.Dispatcher.Invoke(() =>
             {
                 new ConnectivityDialog(title, description, image, exception).ShowDialog();
             });
         }
-
         private static IBootstrapperDialog GetCustomBootstrapper()
         {
             const string LOG_IDENT = "Frontend::GetCustomBootstrapper";
-
             Directory.CreateDirectory(Paths.CustomThemes);
-
             try
             {
                 if (App.Settings.Prop.SelectedCustomTheme == null)
                     throw new CustomThemeException("CustomTheme.Errors.NoThemeSelected");
-
                 CustomDialog dialog = new CustomDialog();
                 dialog.ApplyCustomTheme(App.Settings.Prop.SelectedCustomTheme);
                 return dialog;
@@ -70,14 +55,11 @@ namespace Semistrap.UI
             catch (Exception ex)
             {
                 App.Logger.WriteException(LOG_IDENT, ex);
-
                 if (!App.LaunchSettings.QuietFlag.Active)
                     ShowMessageBox(string.Format(Strings.CustomTheme_Errors_SetupFailed, ex.Message, "Semistrap"), MessageBoxImage.Error);
-
                 return GetBootstrapperDialog(BootstrapperStyle.FluentDialog);
             }
         }
-
         public static IBootstrapperDialog GetBootstrapperDialog(BootstrapperStyle style)
         {
             return style switch
@@ -94,7 +76,6 @@ namespace Semistrap.UI
                 _ => new FluentDialog(false)
             };
         }
-
         private static MessageBoxResult ShowFluentMessageBox(string message, MessageBoxImage icon, MessageBoxButton buttons)
         {
             return Application.Current.Dispatcher.Invoke(new Func<MessageBoxResult>(() =>
@@ -104,7 +85,6 @@ namespace Semistrap.UI
                 return messagebox.Result;
             }));
         }
-
         public static void ShowBalloonTip(string title, string message, System.Windows.Forms.ToolTipIcon icon = System.Windows.Forms.ToolTipIcon.None, int timeout = 5)
         {
             var notifyIcon = new System.Windows.Forms.NotifyIcon
@@ -113,7 +93,6 @@ namespace Semistrap.UI
                 Text = App.ProjectName,
                 Visible = true
             };
-
             notifyIcon.ShowBalloonTip(timeout, title, message, icon);
         }
     }

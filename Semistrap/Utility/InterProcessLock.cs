@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Semistrap.Utility
 {
     public class InterProcessLock : IDisposable
     {
         public Mutex Mutex { get; private set; }
-
         public bool IsAcquired { get; private set; }
-
         public InterProcessLock(string name) : this(name, TimeSpan.Zero) { }
-
         public InterProcessLock(string name, TimeSpan timeout)
         {
             Mutex = new Mutex(false, "Semistrap-" + name);
-
             try
             {
                 IsAcquired = Mutex.WaitOne(timeout);
@@ -27,7 +22,6 @@ namespace Semistrap.Utility
                 IsAcquired = true;
             }
         }
-
         public void Dispose()
         {
             if (IsAcquired)
@@ -35,7 +29,6 @@ namespace Semistrap.Utility
                 Mutex.ReleaseMutex();
                 IsAcquired = false;
             }
-
             GC.SuppressFinalize(this);
         }
     }

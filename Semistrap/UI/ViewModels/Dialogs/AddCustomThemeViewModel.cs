@@ -4,17 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
 namespace Semistrap.UI.ViewModels.Dialogs
 {
     internal class AddCustomThemeViewModel : NotifyPropertyChangedViewModel
     {
         public static CustomThemeTemplate[] Templates => Enum.GetValues<CustomThemeTemplate>();
-
         public CustomThemeTemplate Template { get; set; } = CustomThemeTemplate.Simple;
-
         public string Name { get; set; } = "";
-
         private string _filePath = "";
         public string FilePath
         {
@@ -30,9 +26,7 @@ namespace Semistrap.UI.ViewModels.Dialogs
             }
         }
         public Visibility FilePathVisibility => string.IsNullOrEmpty(FilePath) ? Visibility.Collapsed : Visibility.Visible;
-
         public int SelectedTab { get; set; } = 0;
-
         private string _nameError = "";
         public string NameError
         {
@@ -48,7 +42,6 @@ namespace Semistrap.UI.ViewModels.Dialogs
             }
         }
         public Visibility NameErrorVisibility => string.IsNullOrEmpty(NameError) ? Visibility.Collapsed : Visibility.Visible;
-
         private string _fileError = "";
         public string FileError
         {
