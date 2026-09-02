@@ -1,0 +1,36 @@
+---
+title: "Content modding: replace Roblox assets with Semistrap"
+sidebarTitle: "Content Modding"
+description: "Swap Roblox content files like death sounds, mouse cursors, and other assets using Semistrap's simple mod folder system."
+---
+
+Semistrap includes a content modding system that lets you replace Roblox's default assets with your own. Any file placed in the mod folder overrides the matching Roblox asset while Roblox runs through Semistrap.
+
+## How it works
+
+Semistrap watches a local mods folder. When you launch Roblox through Semistrap, files in this folder are copied over the matching files in the Roblox content directory. On exit, the originals are restored so the base install stays clean.
+
+## Common mods
+
+- **Death sound**: replace the classic "oof" sound
+- **Mouse cursor**: swap the in-game cursor
+- **UI icons and sounds**: customize interface elements
+- **Fonts**: change fonts used by the Roblox UI
+
+## Adding a mod
+
+<Steps>
+  <Step title="Open the mods folder">
+    In Semistrap, open **Mods** and click **Open mods folder**.
+  </Step>
+  <Step title="Place your file">
+    Copy the replacement asset into the same relative path Roblox uses. For example, a custom death sound goes in the folder that mirrors Roblox's audio directory.
+  </Step>
+  <Step title="Launch Roblox">
+    Start Roblox through Semistrap. The mod is applied automatically.
+  </Step>
+</Steps>
+
+<Warning>
+  Only replace content assets you own or are licensed to modify. Do not use modding to inject code or interact with the Roblox client beyond asset replacement.
+</Warning>

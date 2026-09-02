@@ -1,0 +1,23 @@
+---
+title: "Bootstrapper settings: control how Roblox launches"
+sidebarTitle: "Bootstrapper"
+description: "Configure how Semistrap launches and manages Roblox, including channels, launch flags, and graphics overrides."
+---
+
+The **Bootstrapper** tab governs how Semistrap starts and manages the Roblox client. This is where advanced launch behavior lives.
+
+## Options
+
+- **Roblox channel**: pick between the standard channel and any supported alternatives.
+- **Launch flags**: pass FastFlags or other supported options to Roblox at launch.
+- **Graphics overrides**: force specific rendering settings (see [Graphics Config](/features/graphics)).
+- **Auto-relaunch**: reopen Roblox automatically if it crashes during a session.
+- **Cleanup**: control how Semistrap handles Roblox's cache and installation files between updates.
+
+## Reset to defaults
+
+If a change causes problems, open **Settings > Bootstrapper** and click **Reset to defaults**. Semistrap restores all bootstrapper options to their initial values.
+
+<Warning>
+  Only change launch flags you understand. Unknown or unsupported flags can prevent Roblox from starting.
+</Warning>

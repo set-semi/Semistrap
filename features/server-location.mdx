@@ -1,0 +1,25 @@
+---
+title: "See Roblox server geographic location in Semistrap"
+sidebarTitle: "Server Location"
+description: "Semistrap shows the geographic location of the Roblox server you are connected to, using IP geolocation data from ipinfo.io."
+---
+
+Semistrap detects the Roblox server you connect to and displays its geographic location. This is useful for understanding latency, verifying region routing, or just satisfying curiosity about where your matches are hosted.
+
+## What it shows
+
+For each Roblox session, Semistrap displays:
+
+- Country
+- Region or city
+- Approximate coordinates
+
+The data is provided by [ipinfo.io](https://ipinfo.io) via a lookup on the server IP.
+
+## Privacy
+
+Only the Roblox server's public IP is queried. Semistrap does not share your own IP or account information with third parties.
+
+<Info>
+  Server location lookups happen on-demand when you join a game. If your network blocks ipinfo.io, the location field stays blank and Semistrap continues to function normally.
+</Info>

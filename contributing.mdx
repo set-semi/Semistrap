@@ -1,0 +1,44 @@
+---
+title: "Contributing to Semistrap: issues, code, and pull requests"
+sidebarTitle: "Contributing"
+description: "Report bugs, set up the Semistrap development environment, and submit pull requests to the Semistrap open-source project."
+---
+
+Semistrap is open source and welcomes contributions. This page covers how to report issues and how to work on the code.
+
+## Report an issue
+
+Bugs and feature requests are tracked on GitHub. When filing an issue:
+
+- Include your Windows version and Semistrap version.
+- Describe the steps that reproduce the problem.
+- Attach relevant log output if the app produced any.
+
+Open a new issue at [github.com/set-semi/Semistrap/issues](https://github.com/set-semi/Semistrap/issues).
+
+## Development setup
+
+Semistrap is built with .NET 10 and WPF, and uses the [WPF UI](https://github.com/lepoco/wpfui) library for its interface.
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/set-semi/Semistrap.git
+    cd Semistrap
+    ```
+  </Step>
+  <Step title="Install prerequisites">
+    Install [Visual Studio 2022](https://visualstudio.microsoft.com/) or later with the **.NET desktop development** workload, and the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
+  </Step>
+  <Step title="Open the solution">
+    Open `Semistrap.sln` in Visual Studio, then build and run the `Semistrap` project.
+  </Step>
+</Steps>
+
+## Pull requests
+
+Fork the repository, work in a topic branch, and open a pull request against `main`. Keep changes focused and describe the user-facing impact in the PR description.
+
+## Code signing
+
+Semistrap releases are signed thanks to [SignPath.io](https://signpath.io/) and the [SignPath Foundation](https://signpath.org/), which provide free code signing for open-source projects.

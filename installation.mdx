@@ -1,0 +1,39 @@
+---
+title: "Install Semistrap on Windows"
+sidebarTitle: "Installation"
+description: "Download the latest Semistrap release, install the required .NET 10 Desktop Runtime, and get past the Windows SmartScreen prompt."
+---
+
+Semistrap is distributed as a Windows installer from GitHub. This page walks through downloading the latest release, installing the required runtime, and dismissing the first-run SmartScreen prompt.
+
+## Requirements
+
+- A PC running Windows 10 or later
+- [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)
+
+If the .NET runtime is missing when you launch the installer, Semistrap prompts you to install it. Install the runtime first, then run Semistrap again.
+
+## Install
+
+<Steps>
+  <Step title="Download the latest release">
+    Grab the installer from the [latest release page](https://github.com/set-semi/Semistrap/releases/latest) on GitHub.
+  </Step>
+  <Step title="Run the installer">
+    Double-click the downloaded file. If Windows SmartScreen appears, click **More info**, then **Run anyway**. See [SmartScreen warning](/troubleshooting#windows-smartscreen-warning) for details.
+  </Step>
+  <Step title="Configure preferences">
+    Adjust any preferences in the setup UI, then continue to install. You can change all of these later from the Start Menu entry.
+  </Step>
+  <Step title="Launch Roblox through Semistrap">
+    Once installed, Semistrap becomes your Roblox bootstrapper and appears in the Start Menu for reconfiguration.
+  </Step>
+</Steps>
+
+<Note>
+  Semistrap is Windows-only. There is no macOS or Linux build.
+</Note>
+
+## Uninstall
+
+Uninstall Semistrap from **Settings > Apps > Installed apps** in Windows, or from the Semistrap menu itself. The standard Roblox bootstrapper is restored automatically.

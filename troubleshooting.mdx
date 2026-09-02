@@ -1,0 +1,58 @@
+---
+title: "Troubleshooting common Semistrap problems on Windows"
+sidebarTitle: "Troubleshooting"
+description: "Fix Windows SmartScreen prompts, installation failures, missing Discord Rich Presence, and Roblox launch issues in Semistrap."
+---
+
+Most Semistrap issues fall into a handful of categories. This page covers the fixes for the ones users report most often.
+
+## Windows SmartScreen warning
+
+Windows SmartScreen may show a warning the first time you run Semistrap because it is an unknown program to Microsoft's reputation system, not because it is actually malicious.
+
+<Steps>
+  <Step title="Click 'More info'">
+    On the SmartScreen dialog, click the small **More info** link.
+  </Step>
+  <Step title="Click 'Run anyway'">
+    Windows reveals a **Run anyway** button. Click it to continue.
+  </Step>
+</Steps>
+
+## Installation issues
+
+If the installer fails or exits early:
+
+- Confirm the [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) is installed.
+- Right-click the installer and choose **Run as administrator**.
+- Temporarily disable third-party antivirus software during install.
+- Redownload from the [latest release page](https://github.com/set-semi/Semistrap/releases/latest) in case the file is corrupted.
+
+## Discord Rich Presence not working
+
+<Steps>
+  <Step title="Make sure Discord is running">
+    Discord must be open on the same PC before you launch Roblox.
+  </Step>
+  <Step title="Confirm Rich Presence is on">
+    In Semistrap, open **Settings > Integrations** and verify **Discord Rich Presence** is enabled.
+  </Step>
+  <Step title="Restart the game">
+    Close Roblox, then relaunch through Semistrap.
+  </Step>
+</Steps>
+
+If it still does not appear, check Discord's **Settings > Activity Privacy** and confirm "Display current activity as a status message" is enabled.
+
+## Roblox not launching
+
+Try these in order:
+
+1. Restart your PC and launch Roblox again through Semistrap.
+2. In Semistrap, reset **Bootstrapper** settings to defaults.
+3. Reinstall Semistrap from the [latest release](https://github.com/set-semi/Semistrap/releases/latest).
+4. Check the Semistrap logs (accessible from the menu) for specific errors, and include them if you open an issue.
+
+## Still stuck?
+
+Open an [issue on GitHub](https://github.com/set-semi/Semistrap/issues) with your Windows version, Semistrap version, and any log output. You can also ask in the [Discord server](https://discord.gg/s3QW8b6PUf).
