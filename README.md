@@ -1,5 +1,5 @@
 > [!CAUTION]
-> The only official places to download Semistrap are this GitHub repository and [bloxstraplabs.com](https://semistrap.vercel.app). Any other websites offering downloads or claiming to be us are not owned by us.
+> The only official places to download Semistrap are this GitHub repository and [semistrap.vercel.app](https://semistrap.vercel.app). Any other websites offering downloads or claiming to be us are not owned by us.
 
 <p align="center">
     <img src="https://github.com/set-semi/Semistrap/raw/main/Images/Semistrap-banner-light.png#gh-dark-mode-only" width="380">
