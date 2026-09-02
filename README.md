@@ -61,10 +61,10 @@ Thanks to [SignPath.io](https://signpath.io/) for providing a free code signing 
 
 ---
 
-[shield-repo-license]: https://img.shields.io/github/license/thecloudyy/Semistrap
-[shield-repo-workflow]: https://img.shields.io/github/actions/workflow/status/thecloudyy/Semistrap/ci-release.yml?branch=main&label=builds
-[shield-repo-releases]: https://img.shields.io/github/downloads/thecloudyy/Semistrap/latest/total?color=981bfe
-[shield-repo-latest]: https://img.shields.io/github/v/release/thecloudyy/Semistrap?color=7a39fb
+[shield-repo-license]: https://img.shields.io/github/license/set-semi/Semistrap
+[shield-repo-workflow]: https://img.shields.io/github/actions/workflow/status/set-semi/Semistrap/ci-release.yml?branch=main&label=builds
+[shield-repo-releases]: https://img.shields.io/github/downloads/set-semi/Semistrap/latest/total?color=981bfe
+[shield-repo-latest]: https://img.shields.io/github/v/release/set-semi/Semistrap?color=7a39fb
 [shield-discord-server]: https://img.shields.io/discord/1544393488559513680?logo=discord&logoColor=white&label=discord&color=4d3dff
 
 [repo-license]: https://github.com/set-semi/Semistrap/blob/main/LICENSE
