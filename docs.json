@@ -164,5 +164,6 @@
     "primary": "#7A39FB",
     "light": "#981BFE",
     "dark": "#4D3DFF"
-  }
+  },
+  "theme": "palm"
 }
