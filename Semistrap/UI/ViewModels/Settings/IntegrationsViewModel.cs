@@ -54,11 +54,7 @@ namespace Semistrap.UI.ViewModels.Settings
                 if (!value)
                 {
                     ShowServerDetailsEnabled = value;
-                    DiscordActivityEnabled = value;
-                    DiscordActivityJoinEnabled = value;
                     OnPropertyChanged(nameof(ShowServerDetailsEnabled));
-                    OnPropertyChanged(nameof(DiscordActivityEnabled));
-                    OnPropertyChanged(nameof(DiscordActivityJoinEnabled));
                 }
             }
         }
@@ -66,31 +62,6 @@ namespace Semistrap.UI.ViewModels.Settings
         {
             get => App.Settings.Prop.ShowServerDetails;
             set => App.Settings.Prop.ShowServerDetails = value;
-        }
-        public bool DiscordActivityEnabled
-        {
-            get => App.Settings.Prop.UseDiscordRichPresence;
-            set
-            {
-                App.Settings.Prop.UseDiscordRichPresence = value;
-                if (!value)
-                {
-                    DiscordActivityJoinEnabled = value;
-                    DiscordAccountOnProfile = value;
-                    OnPropertyChanged(nameof(DiscordActivityJoinEnabled));
-                    OnPropertyChanged(nameof(DiscordAccountOnProfile));
-                }
-            }
-        }
-        public bool DiscordActivityJoinEnabled
-        {
-            get => !App.Settings.Prop.HideRPCButtons;
-            set => App.Settings.Prop.HideRPCButtons = !value;
-        }
-        public bool DiscordAccountOnProfile
-        {
-            get => App.Settings.Prop.ShowAccountOnRichPresence;
-            set => App.Settings.Prop.ShowAccountOnRichPresence = value;
         }
         public ObservableCollection<CustomIntegration> CustomIntegrations
         {
