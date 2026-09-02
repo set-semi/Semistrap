@@ -1,36 +1,28 @@
 ---
-title: "Integrations settings: activity, Discord, and custom apps"
+title: "Integrations settings: activity tracking and custom apps"
 sidebarTitle: "Integrations"
-description: "Configure Semistrap's activity tracker, Discord Rich Presence display options, and custom integrations that launch alongside Roblox."
+description: "Configure Semistrap's activity tracker, server-location lookup for Discord Rich Presence, and custom integrations that launch alongside Roblox."
 ---
 
-The **Integrations** page controls Semistrap's activity tracker and everything built on top of it, plus custom applications that launch when Roblox does.
+The **Integrations** page controls Semistrap's activity tracker (which powers Discord Rich Presence) and lets you register custom applications that launch when Roblox does.
 
 ## Activity tracking
 
-- **Activity tracking**: master switch. When off, Semistrap does not read the Roblox log to detect games and servers, and every dependent feature is disabled.
+- **Enable activity tracking**: master switch. When off, Semistrap does not read the Roblox log to detect games and servers, and Discord Rich Presence has nothing to display.
+- **Query server location**: look up the connected server's region via [ipinfo.io](https://ipinfo.io) and include it in Discord Rich Presence. Requires activity tracking.
 
-## Discord Rich Presence
-
-Requires activity tracking.
-
-- **Discord Rich Presence**: enable or disable the built-in RPC integration.
-- **Hide RPC buttons**: hide the join and other buttons that games can add to the presence.
-- **Show account on Rich Presence**: include the Roblox username you are playing as.
-- **Show server details**: include the connected server's region on your Discord profile.
-
-See [Discord Rich Presence](/features/discord-rich-presence) and [Server location](/features/server-location) for details.
+See [Discord Rich Presence](/features/discord-rich-presence) and [Server location](/features/server-location) for what these enable.
 
 ## Custom integrations
 
 Custom integrations are external programs that Semistrap launches alongside Roblox.
 
 <Steps>
-  <Step title="Click Add">
+  <Step title="Click New">
     A new integration entry is created with a default name.
   </Step>
   <Step title="Browse to the executable">
-    Click **Browse** and pick the program. The integration's name defaults to the file name.
+    Click **Browse** and pick the program. The integration's name defaults to the file name; you can rename it in the **Name** field.
   </Step>
   <Step title="Set launch arguments">
     Enter any command-line arguments the program needs in the **Launch args** field.
