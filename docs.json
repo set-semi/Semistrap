@@ -1,169 +1,24 @@
 {
-  "name": "Semistrap Wiki",
-  "description": "Documentation and guides for Semistrap",
-  "pages": [
-    {
-      "id": "home",
-      "title": "Home",
-      "description": "Welcome to the Semistrap wiki"
-    },
-    {
-      "id": "getting-started",
-      "title": "Getting Started",
-      "description": "How to install and set up Semistrap",
-      "sections": [
-        {
-          "id": "installation",
-          "title": "Installation",
-          "content": "Download the latest release from GitHub and run the installer. You will need the .NET 10 Desktop Runtime if not already installed."
-        },
-        {
-          "id": "requirements",
-          "title": "System Requirements",
-          "content": "Semistrap requires Windows 10 or later and the .NET 10 Desktop Runtime."
-        },
-        {
-          "id": "first-launch",
-          "title": "First Launch",
-          "content": "On first launch, Semistrap will guide you through the initial setup wizard where you can configure your preferences."
-        }
-      ]
-    },
-    {
-      "id": "features",
-      "title": "Features",
-      "description": "Overview of Semistrap features",
-      "sections": [
-        {
-          "id": "discord-rich-presence",
-          "title": "Discord Rich Presence",
-          "content": "Show your friends what Roblox game you're playing directly on your Discord profile. Configure display options in Settings > Integrations."
-        },
-        {
-          "id": "modding",
-          "title": "Content Modding",
-          "content": "Customize Roblox content files such as death sounds, mouse cursors, and other assets."
-        },
-        {
-          "id": "server-location",
-          "title": "Server Location",
-          "content": "See the geographical location of the Roblox server you're connected to, powered by ipinfo.io."
-        },
-        {
-          "id": "graphics-config",
-          "title": "Graphics Configuration",
-          "content": "Configure graphics fidelity and UI experience settings for Roblox."
-        }
-      ]
-    },
-    {
-      "id": "settings",
-      "title": "Settings",
-      "description": "Configuration options available in Semistrap",
-      "sections": [
-        {
-          "id": "general",
-          "title": "General Settings",
-          "content": "Basic application settings including language, theme, and startup behavior."
-        },
-        {
-          "id": "integrations",
-          "title": "Integrations",
-          "content": "Configure Discord Rich Presence and other third-party integrations."
-        },
-        {
-          "id": "appearance",
-          "title": "Appearance",
-          "content": "Customize the look and feel of Semistrap including icons and themes."
-        },
-        {
-          "id": "bootstrapper",
-          "title": "Bootstrapper Settings",
-          "content": "Configure how Roblox is launched and managed by Semistrap."
-        }
-      ]
-    },
-    {
-      "id": "troubleshooting",
-      "title": "Troubleshooting",
-      "description": "Common issues and solutions",
-      "sections": [
-        {
-          "id": "smartscreen",
-          "title": "Windows SmartScreen Warning",
-          "content": "Windows SmartScreen may show a warning on first launch. Click 'More info' and then 'Run anyway' to proceed."
-        },
-        {
-          "id": "installation-issues",
-          "title": "Installation Issues",
-          "content": "If installation fails, ensure you have the .NET 10 Desktop Runtime installed and try running as administrator."
-        },
-        {
-          "id": "discord-not-working",
-          "title": "Discord Rich Presence Not Working",
-          "content": "Ensure Discord is running before launching Roblox. Check that Rich Presence is enabled in Settings > Integrations."
-        },
-        {
-          "id": "roblox-not-launching",
-          "title": "Roblox Not Launching",
-          "content": "Try reinstalling Semistrap. If the issue persists, check the Semistrap logs for error details."
-        }
-      ]
-    },
-    {
-      "id": "faq",
-      "title": "FAQ",
-      "description": "Frequently asked questions",
-      "sections": [
-        {
-          "id": "malware",
-          "title": "Is Semistrap malware?",
-          "content": "No. The source code is fully open source and viewable on GitHub. Semistrap does not contain any malicious code."
-        },
-        {
-          "id": "ban-risk",
-          "title": "Can using Semistrap get me banned?",
-          "content": "No. Semistrap does not interact with the Roblox client in the same way that exploits do. It is a legitimate bootstrapper replacement."
-        },
-        {
-          "id": "official-sources",
-          "title": "What are the official download sources?",
-          "content": "The only official sources are this GitHub repository and semistrap.vercel.app. Do not download Semistrap from any other website."
-        },
-        {
-          "id": "difference-from-bloxstrap",
-          "title": "How is Semistrap different from Bloxstrap?",
-          "content": "Semistrap is a fork of Bloxstrap with additional features, removed analytics, and active maintenance by the Semistrap team."
-        }
-      ]
-    },
-    {
-      "id": "contributing",
-      "title": "Contributing",
-      "description": "How to contribute to Semistrap",
-      "sections": [
-        {
-          "id": "reporting-issues",
-          "title": "Reporting Issues",
-          "content": "Found a bug? Open an issue on GitHub with detailed steps to reproduce the problem."
-        },
-        {
-          "id": "development",
-          "title": "Development Setup",
-          "content": "Semistrap is built with .NET 10 and WPF. Clone the repository and open in Visual Studio 2022 or later to start developing."
-        },
-        {
-          "id": "pull-requests",
-          "title": "Pull Requests",
-          "content": "Contributions are welcome! Fork the repository, make your changes, and submit a pull request."
-        }
-      ]
-    }
-  ],
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "aspen",
+  "name": "Semistrap",
   "colors": {
     "primary": "#7A39FB",
     "light": "#981BFE",
     "dark": "#4D3DFF"
   },
-  "theme": "palm"
+  "navigation": {
+    "groups": [
+      { "group": "Get Started", "pages": ["index", "installation", "first-launch"] },
+      { "group": "Features", "pages": ["features/discord-rich-presence", "features/modding", "features/server-location", "features/graphics"] },
+      { "group": "Settings", "pages": ["settings/general", "settings/integrations", "settings/appearance", "settings/bootstrapper"] },
+      { "group": "Help", "pages": ["troubleshooting", "faq", "contributing"] }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/set-semi/Semistrap",
+      "discord": "https://discord.gg/s3QW8b6PUf"
+    }
+  }
 }
