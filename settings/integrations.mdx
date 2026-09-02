@@ -1,31 +1,47 @@
 ---
-title: "Integrations settings: Discord Rich Presence and more"
+title: "Integrations settings: activity, Discord, and custom apps"
 sidebarTitle: "Integrations"
-description: "Manage third-party integrations from Semistrap, including Discord Rich Presence display options and server-location lookups."
+description: "Configure Semistrap's activity tracker, Discord Rich Presence display options, and custom integrations that launch alongside Roblox."
 ---
 
-The **Integrations** tab controls how Semistrap talks to third-party services. Every integration can be turned off independently.
+The **Integrations** page controls Semistrap's activity tracker and everything built on top of it, plus custom applications that launch when Roblox does.
 
-## Available integrations
+## Activity tracking
 
-- **Discord Rich Presence**: show the Roblox game you are playing on Discord. See [Discord Rich Presence](/features/discord-rich-presence).
-- **Server location (ipinfo.io)**: display the geographic location of the Roblox server. See [Server Location](/features/server-location).
+- **Activity tracking**: master switch. When off, Semistrap does not read the Roblox log to detect games and servers, and every dependent feature is disabled.
 
-## Rich Presence display options
+## Discord Rich Presence
 
-When Discord Rich Presence is on, you can toggle:
+Requires activity tracking.
 
-- Game name
-- Server region
-- Elapsed play time
+- **Discord Rich Presence**: enable or disable the built-in RPC integration.
+- **Hide RPC buttons**: hide the join and other buttons that games can add to the presence.
+- **Show account on Rich Presence**: include the Roblox username you are playing as.
+- **Show server details**: include the connected server's region on your Discord profile.
 
-## Turn an integration off
+See [Discord Rich Presence](/features/discord-rich-presence) and [Server location](/features/server-location) for details.
+
+## Custom integrations
+
+Custom integrations are external programs that Semistrap launches alongside Roblox.
 
 <Steps>
-  <Step title="Open Integrations">
-    In Semistrap, go to **Settings > Integrations**.
+  <Step title="Click Add">
+    A new integration entry is created with a default name.
   </Step>
-  <Step title="Toggle the integration">
-    Switch the integration off. Semistrap stops making the associated network requests immediately.
+  <Step title="Browse to the executable">
+    Click **Browse** and pick the program. The integration's name defaults to the file name.
+  </Step>
+  <Step title="Set launch arguments">
+    Enter any command-line arguments the program needs in the **Launch args** field.
+  </Step>
+  <Step title="Choose whether it auto-closes">
+    Enable **Auto close** to have Semistrap terminate the program when Roblox exits.
   </Step>
 </Steps>
+
+Use **Delete** to remove the currently selected integration.
+
+<Tip>
+  Custom integrations are a good way to run stream overlays, hotkey managers, or capture tools only while Roblox is active.
+</Tip>

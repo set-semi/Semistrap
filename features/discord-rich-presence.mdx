@@ -1,12 +1,14 @@
 ---
 title: "Discord Rich Presence for Roblox with Semistrap"
 sidebarTitle: "Discord Rich Presence"
-description: "Show the Roblox game you are playing on your Discord profile using Semistrap's built-in Rich Presence integration."
+description: "Show the Roblox game you are playing on your Discord profile using Semistrap's built-in Rich Presence integration, with optional server details."
 ---
 
 Semistrap's Discord Rich Presence integration lets your friends see, at a glance, which Roblox game you are currently playing. It runs automatically once enabled; there is no separate Discord bot or account link to set up.
 
 ## Enable Rich Presence
+
+Rich Presence is on by default. To toggle it:
 
 <Steps>
   <Step title="Open Semistrap">
@@ -15,20 +17,28 @@ Semistrap's Discord Rich Presence integration lets your friends see, at a glance
   <Step title="Go to Integrations">
     Open **Settings > Integrations**.
   </Step>
-  <Step title="Turn on Discord Rich Presence">
-    Toggle **Discord Rich Presence** on. Optional display fields (game name, server region, elapsed time) can be toggled individually.
+  <Step title="Toggle Rich Presence">
+    Turn **Discord Rich Presence** on or off. It requires **Activity tracking** to also be enabled.
   </Step>
 </Steps>
+
+## Display options
+
+Under **Integrations**, you can also configure:
+
+- **Show server details**: display the server region on your Discord profile (requires activity tracking).
+- **Hide RPC buttons**: hide the "Join" and other buttons that games can add to the presence.
+- **Show account on Rich Presence**: display the Roblox account you are playing as.
 
 ## What friends see
 
 When Rich Presence is active and you launch a Roblox game, your Discord profile shows:
 
 - The game you are playing
-- Optional server region and location
+- Optional server region and location (if server details are enabled)
 - Elapsed play time
 
-Rich Presence stops the moment you close the Roblox client.
+When Roblox is not running, Semistrap shows an idle presence ("Using Semistrap"). Rich Presence stops when you close Semistrap.
 
 <Note>
   Discord must be running on the same machine before you launch Roblox. If Rich Presence does not appear, see [Discord Rich Presence not working](/troubleshooting#discord-rich-presence-not-working).

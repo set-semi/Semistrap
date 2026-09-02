@@ -1,34 +1,36 @@
 ---
-title: "First launch and initial setup for Semistrap"
+title: "First launch: what Semistrap sets up on install"
 sidebarTitle: "First Launch"
-description: "Walk through the Semistrap setup wizard, choose your preferences, and open the menu again from the Start Menu whenever you need to."
+description: "Understand what the Semistrap installer does, how to reopen the menu later, and where Roblox is launched from."
 ---
 
-The first time you run Semistrap, a setup wizard collects your preferences before installing. This page describes what to expect and how to reopen the menu later.
+The Semistrap installer registers Semistrap as the Roblox bootstrapper and creates shortcuts. The menu can be reopened anytime from the Start Menu or via the `-settings` argument.
 
-## Setup wizard
+## What the installer does
 
-The wizard covers the basics:
-
-- Where to install Semistrap
-- Whether to enable Discord Rich Presence
-- Which mods and content overrides to apply
-- Graphics and UI defaults for Roblox
-
-Every choice can be changed later from the Semistrap menu; nothing here is permanent.
+- Registers Semistrap as the default Roblox launcher for `roblox-player:` and `roblox-studio:` URIs.
+- Creates a Start Menu shortcut for the Semistrap menu.
+- Optionally creates desktop shortcuts (Roblox Player, Roblox Studio, Semistrap Settings). See [Shortcuts settings](/settings/shortcuts).
+- Prepares the mods folder and config directory.
 
 ## Reopening the menu
 
-After install, Semistrap is added to your **Start Menu**. Open it any time to:
-
-- Reconfigure preferences
-- Toggle integrations
-- Apply new mods
-- Repair or reinstall
+After install, open Semistrap from the **Start Menu**, or run the executable with `-settings` to jump straight to the settings window.
 
 <Tip>
-  Pin Semistrap to the Start Menu or taskbar for quick access to its settings.
+  Pin Semistrap to the Start Menu or taskbar for quick access.
 </Tip>
+
+## Command-line launch modes
+
+Semistrap accepts these launch arguments:
+
+- `-player`: launch Roblox Player
+- `-studio`: launch Roblox Studio
+- `-settings`: open the settings window
+- `-menu`: open the launch menu
+
+These are the same arguments the built-in shortcuts use, and you can pass them to any custom shortcut you create.
 
 ## Next steps
 
@@ -37,7 +39,7 @@ After install, Semistrap is added to your **Start Menu**. Open it any time to:
     See what Semistrap adds on top of the standard bootstrapper.
   </Card>
 
-  <Card title="Settings reference" icon="gear" href="/settings/general">
-    Browse every configuration option available in the app.
+  <Card title="Settings reference" icon="gear" href="/settings/semistrap">
+    Every configuration page in the app, top to bottom.
   </Card>
 </CardGroup>

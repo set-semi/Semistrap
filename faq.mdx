@@ -1,29 +1,46 @@
 ---
-title: "Semistrap FAQ: safety, bans, sources, and differences"
+title: "Semistrap FAQ: safety, bans, sources, and platforms"
 sidebarTitle: "FAQ"
-description: "Answers to the most common questions about Semistrap: is it safe, can it get you banned, where to download it, and how it differs from other bootstrappers."
+description: "Answers to common questions about Semistrap: whether it is safe, whether using it can get you banned, official downloads, and platform support."
 ---
 
-Answers to the questions most Semistrap users ask before installing.
+Short answers to the questions people ask most often about Semistrap. See [Troubleshooting](/troubleshooting) for fix-oriented issues.
 
 <AccordionGroup>
   <Accordion title="Is Semistrap malware?">
-    No. Semistrap is fully open source; the code is on [GitHub](https://github.com/set-semi/Semistrap) for anyone to audit. It would be impossible to slip malicious code into releases without users noticing. Just make sure you download it from an official source.
+    No. Semistrap is open source; the full source is in the [GitHub repository](https://github.com/set-semi/Semistrap) and every release is built from it. It is not possible to slip malicious code into an official release without it being visible in the source. Only download Semistrap from the official sources listed below.
   </Accordion>
 
-  <Accordion title="Can using Semistrap get me banned?">
-    It should not. Semistrap does not interact with the Roblox client the way exploits do; it is a bootstrapper replacement, not an injector or a cheat.
+  <Accordion title="Can using Semistrap get me banned from Roblox?">
+    It should not. Semistrap replaces the standard Roblox bootstrapper and manages content-file mods; it does not interact with the running Roblox client the way exploits do. That said, use it at your own risk and only apply mods to your own content.
   </Accordion>
 
   <Accordion title="What are the official download sources?">
-    Only two: this [GitHub repository](https://github.com/set-semi/Semistrap) and [semistrap.vercel.app](https://semistrap.vercel.app). Any other site offering Semistrap downloads is not affiliated with the project.
+    Only two:
+
+    - [github.com/set-semi/Semistrap](https://github.com/set-semi/Semistrap)
+    - [semistrap.vercel.app](https://semistrap.vercel.app)
+
+    Any other website offering Semistrap downloads is unofficial.
   </Accordion>
 
   <Accordion title="Does Semistrap work on macOS or Linux?">
-    No. Semistrap is Windows-only.
+    No. Semistrap is Windows-only. Roblox's own Windows client is required.
   </Accordion>
 
-  <Accordion title="Does Semistrap collect analytics?">
-    Semistrap is designed to keep third-party network calls minimal and configurable. Server-location lookups (via ipinfo.io) and Discord Rich Presence can each be turned off from **Settings > Integrations**.
+  <Accordion title="Does Semistrap require .NET?">
+    Yes: the [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0). If it is missing, the installer prompts you to install it.
+  </Accordion>
+
+  <Accordion title="Do I need to keep Semistrap open while playing?">
+    Yes if you want Discord Rich Presence, activity tracking, or custom integrations to run. Semistrap detects Roblox activity in the background while it is open.
+  </Accordion>
+
+  <Accordion title="Where does Semistrap store its config?">
+    In your local Semistrap app data folder. Use **Settings > Semistrap > Export data** to bundle it into a zip.
+  </Accordion>
+
+  <Accordion title="How do I report a bug?">
+    Open an [issue on GitHub](https://github.com/set-semi/Semistrap/issues) with an exported support bundle attached, or ask in the [Discord server](https://discord.gg/s3QW8b6PUf).
   </Accordion>
 </AccordionGroup>

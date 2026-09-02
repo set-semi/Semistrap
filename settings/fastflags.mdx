@@ -1,0 +1,31 @@
+---
+title: "FastFlags settings: presets, editor, and reset"
+sidebarTitle: "FastFlags"
+description: "Toggle Semistrap's FastFlag presets for Roblox rendering (MSAA, texture quality, scaling fix) and open the raw editor to manage custom flags."
+---
+
+The **FastFlags** page manages Roblox client overrides written to `ClientAppSettings.json`. Preset toggles cover common tweaks; the editor is for arbitrary flags.
+
+See [FastFlags feature overview](/features/fastflags) for what these flags do at the Roblox level.
+
+## Master toggle
+
+- **Use FastFlag manager**: when off, Semistrap does not write any overrides, regardless of the preset values below.
+
+## Rendering presets
+
+- **MSAA level**: `Default`, `1x`, `2x`, or `4x`. Sets Roblox's MSAA-related flags.
+- **Texture quality**: `Default`, or levels `0`–`3`. Enables the texture quality override flags.
+- **Fix display scaling**: forces Roblox to render at the native resolution even when Windows display scaling is above 100%.
+
+## Reset configuration
+
+Toggling **Reset configuration** on temporarily clears all flags for the current session. Toggle it off to restore your previous flag set. The page reloads automatically.
+
+## FastFlag editor
+
+If Roblox Studio is installed, click **Open FastFlag editor** to open a dedicated window for adding, editing, and deleting arbitrary flags.
+
+<Warning>
+  Setting unknown or malformed flags can crash Roblox or block launch. If a game becomes unstable after a change, disable **Use FastFlag manager** and relaunch.
+</Warning>

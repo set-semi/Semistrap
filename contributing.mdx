@@ -1,44 +1,69 @@
 ---
-title: "Contributing to Semistrap: issues, code, and pull requests"
+title: "Contributing to Semistrap: source, builds, and PRs"
 sidebarTitle: "Contributing"
-description: "Report bugs, set up the Semistrap development environment, and submit pull requests to the Semistrap open-source project."
+description: "Contribute to Semistrap: clone the repo, build the WPF app in Visual Studio, and open a pull request against the main branch."
 ---
 
-Semistrap is open source and welcomes contributions. This page covers how to report issues and how to work on the code.
+Semistrap is open source. Contributions, bug reports, and feature requests are welcome. This page covers how to get the code building locally and how to submit changes.
 
-## Report an issue
+## The stack
 
-Bugs and feature requests are tracked on GitHub. When filing an issue:
+- **Language**: C# on .NET 10.
+- **UI**: WPF, styled with the [WPF UI](https://github.com/lepoco/wpfui) library.
+- **Repo**: [github.com/set-semi/Semistrap](https://github.com/set-semi/Semistrap).
 
-- Include your Windows version and Semistrap version.
-- Describe the steps that reproduce the problem.
-- Attach relevant log output if the app produced any.
-
-Open a new issue at [github.com/set-semi/Semistrap/issues](https://github.com/set-semi/Semistrap/issues).
-
-## Development setup
-
-Semistrap is built with .NET 10 and WPF, and uses the [WPF UI](https://github.com/lepoco/wpfui) library for its interface.
+## Build locally
 
 <Steps>
+  <Step title="Install prerequisites">
+    - Windows 10/11
+    - [Visual Studio 2022 or newer](https://visualstudio.microsoft.com/) with the .NET desktop workload
+    - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+  </Step>
   <Step title="Clone the repository">
     ```bash
     git clone https://github.com/set-semi/Semistrap.git
     cd Semistrap
     ```
   </Step>
-  <Step title="Install prerequisites">
-    Install [Visual Studio 2022](https://visualstudio.microsoft.com/) or later with the **.NET desktop development** workload, and the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
-  </Step>
   <Step title="Open the solution">
-    Open `Semistrap.sln` in Visual Studio, then build and run the `Semistrap` project.
+    Open `Semistrap.sln` in Visual Studio.
+  </Step>
+  <Step title="Build and run">
+    Build the `Semistrap` project and press F5 to run it locally. The debug build points at your normal Semistrap app data folder.
   </Step>
 </Steps>
 
-## Pull requests
+## Reporting bugs
 
-Fork the repository, work in a topic branch, and open a pull request against `main`. Keep changes focused and describe the user-facing impact in the PR description.
+Before filing:
+
+- Reproduce the issue with FastFlag overrides and mods disabled.
+- Export a support bundle from **Settings > Semistrap > Export data**.
+
+Then open a [new issue](https://github.com/set-semi/Semistrap/issues) with:
+
+- Steps to reproduce
+- What you expected vs. what happened
+- The exported zip attached
+
+## Submitting a pull request
+
+<Steps>
+  <Step title="Fork and branch">
+    Fork the repo and create a topic branch off `main`.
+  </Step>
+  <Step title="Match the code style">
+    Follow the existing patterns in the codebase (ViewModels for settings pages, `App.Settings.Prop.*` for persistent state, localized strings via `Strings.*`).
+  </Step>
+  <Step title="Test on Windows">
+    Build and run the change against a real Roblox install.
+  </Step>
+  <Step title="Open the PR">
+    Open a pull request against `main` describing the change and linking the related issue.
+  </Step>
+</Steps>
 
 ## Code signing
 
-Semistrap releases are signed thanks to [SignPath.io](https://signpath.io/) and the [SignPath Foundation](https://signpath.org/), which provide free code signing for open-source projects.
+Release binaries are code-signed thanks to [SignPath.io](https://signpath.io/) and the [SignPath Foundation](https://signpath.org/), which provide the free code signing service and certificate.

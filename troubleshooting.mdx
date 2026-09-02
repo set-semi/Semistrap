@@ -1,58 +1,70 @@
 ---
-title: "Troubleshooting common Semistrap problems on Windows"
+title: "Troubleshooting Semistrap: fixes for common problems"
 sidebarTitle: "Troubleshooting"
-description: "Fix Windows SmartScreen prompts, installation failures, missing Discord Rich Presence, and Roblox launch issues in Semistrap."
+description: "Resolve common Semistrap issues: SmartScreen prompts, missing .NET runtime, Discord Rich Presence not showing, and Roblox install corruption."
 ---
 
-Most Semistrap issues fall into a handful of categories. This page covers the fixes for the ones users report most often.
+Most Semistrap issues fall into a small set of categories: SmartScreen prompts, missing prerequisites, RPC not connecting, or a broken Roblox install. Work through the sections below in order and, if nothing helps, export your data and file an issue.
 
-## Windows SmartScreen warning
+## Windows SmartScreen blocks Semistrap
 
-Windows SmartScreen may show a warning the first time you run Semistrap because it is an unknown program to Microsoft's reputation system, not because it is actually malicious.
+Windows may show _"Windows protected your PC"_ when you run Semistrap. This happens because Semistrap is not signed by a widely-recognized commercial publisher; it does not mean Semistrap is malicious.
 
-<Steps>
-  <Step title="Click 'More info'">
-    On the SmartScreen dialog, click the small **More info** link.
-  </Step>
-  <Step title="Click 'Run anyway'">
-    Windows reveals a **Run anyway** button. Click it to continue.
-  </Step>
-</Steps>
+Click **More info**, then **Run anyway**.
 
-## Installation issues
+## "This app requires .NET" or the installer refuses to run
 
-If the installer fails or exits early:
-
-- Confirm the [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) is installed.
-- Right-click the installer and choose **Run as administrator**.
-- Temporarily disable third-party antivirus software during install.
-- Redownload from the [latest release page](https://github.com/set-semi/Semistrap/releases/latest) in case the file is corrupted.
+Semistrap requires the [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0). Install the runtime, then run the Semistrap installer again.
 
 ## Discord Rich Presence not working
 
+If your Discord profile does not show the game you are playing:
+
 <Steps>
-  <Step title="Make sure Discord is running">
-    Discord must be open on the same PC before you launch Roblox.
+  <Step title="Restart Discord first, then Roblox">
+    Discord's local RPC socket must be running before Semistrap connects to it. Close Roblox, restart Discord, then launch Roblox again from Semistrap.
   </Step>
-  <Step title="Confirm Rich Presence is on">
-    In Semistrap, open **Settings > Integrations** and verify **Discord Rich Presence** is enabled.
+  <Step title="Check activity tracking">
+    Open **Settings > Integrations** and confirm both **Activity tracking** and **Discord Rich Presence** are on.
   </Step>
-  <Step title="Restart the game">
-    Close Roblox, then relaunch through Semistrap.
+  <Step title="Check Discord activity privacy">
+    In Discord, open **Settings > Activity Privacy** and enable **Share your detected activities with others**.
+  </Step>
+  <Step title="Try without Discord's built-in game detection">
+    Discord's own game detection can conflict with Semistrap. In Discord **Settings > Registered Games**, remove Roblox if it is listed.
   </Step>
 </Steps>
 
-If it still does not appear, check Discord's **Settings > Activity Privacy** and confirm "Display current activity as a status message" is enabled.
+## Roblox will not launch or crashes on launch
 
-## Roblox not launching
+<Steps>
+  <Step title="Disable FastFlag overrides">
+    Open **Settings > FastFlags** and turn off **Use FastFlag manager**. Bad flags are the most common cause of launch failures.
+  </Step>
+  <Step title="Force a Roblox reinstall">
+    Open **Settings > Bootstrapper** and enable **Force Roblox reinstallation**. Launch Roblox once, then turn it off.
+  </Step>
+  <Step title="Check mods">
+    If you have custom mods, remove them from the mods folder and try again. A malformed asset can prevent Roblox from starting.
+  </Step>
+</Steps>
 
-Try these in order:
+## Custom bootstrapper looks broken
 
-1. Restart your PC and launch Roblox again through Semistrap.
-2. In Semistrap, reset **Bootstrapper** settings to defaults.
-3. Reinstall Semistrap from the [latest release](https://github.com/set-semi/Semistrap/releases/latest).
-4. Check the Semistrap logs (accessible from the menu) for specific errors, and include them if you open an issue.
+If the bootstrapper dialog does not render correctly, switch the dialog style in **Settings > Appearance** back to `Semistrap` (the Fluent dialog) and preview it. If it works there, the issue is with your custom theme's XML or referenced assets.
 
-## Still stuck?
+## Getting more help
 
-Open an [issue on GitHub](https://github.com/set-semi/Semistrap/issues) with your Windows version, Semistrap version, and any log output. You can also ask in the [Discord server](https://discord.gg/s3QW8b6PUf).
+If none of the above helps:
+
+<Steps>
+  <Step title="Export a support bundle">
+    In **Settings > Semistrap**, click **Export data** with both **Config** and **Logs** enabled.
+  </Step>
+  <Step title="File an issue">
+    Open [a GitHub issue](https://github.com/set-semi/Semistrap/issues) and attach the exported zip. Describe what you did, what happened, and what you expected.
+  </Step>
+  <Step title="Or ask on Discord">
+    Join the [Semistrap Discord](https://discord.gg/s3QW8b6PUf) and post in the support channel.
+  </Step>
+</Steps>

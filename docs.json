@@ -10,12 +10,30 @@
   "navigation": {
     "groups": [
       { "group": "Get Started", "pages": ["index", "installation", "first-launch"] },
-      { "group": "Features", "pages": ["features/discord-rich-presence", "features/modding", "features/server-location", "features/graphics"] },
+      {
+        "group": "Features",
+        "pages": [
+          "features/discord-rich-presence",
+          "features/modding",
+          "features/server-location",
+          "features/fastflags",
+          "features/custom-bootstrapper""] },
       { "group": "Settings", "pages": ["settings/general", "settings/integrations", "settings/appearance", "settings/bootstrapper"] },
       { "group": "Help", "pages": ["troubleshooting", "faq", "contributing"] }
     ]
   },
-  "footer": {
+  {
+    "group": "Settings",
+    "pages": [
+      "settings/semistrap",
+      "settings/appearance",
+      "settings/mods",
+      "settings/integrations",
+      "settings/fastflags",
+      "settings/bootstrapper",
+      "settings/shortcuts"
+    ]
+  }: {
     "socials": {
       "github": "https://github.com/set-semi/Semistrap",
       "discord": "https://discord.gg/s3QW8b6PUf"

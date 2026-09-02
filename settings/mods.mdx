@@ -1,0 +1,42 @@
+---
+title: "Mods settings: presets, custom font, and mods folder"
+sidebarTitle: "Mods"
+description: "Enable Semistrap's built-in Roblox mod presets, load a custom UI font, open the mods folder, and access Windows compatibility settings for Roblox."
+---
+
+The **Mods** page turns on Semistrap's built-in Roblox content presets and gives you access to the free-form mods folder. See [Content mods](/features/modding) for how the modding system applies files at launch and restores originals on exit.
+
+## Preset toggles
+
+- **Old character sounds**: restore the classic walk, jump, and get-up sounds.
+- **Old avatar background**: use the pre-2022 avatar view background place.
+- **Cursor**: pick `Default`, `From 2006`, or `From 2013`.
+- **Emoji font**: change the emoji font used in Roblox UI.
+
+## Custom text font
+
+Load a `.ttf`, `.otf`, or `.ttc` font file to override the default Roblox UI font.
+
+<Steps>
+  <Step title="Click Choose font">
+    A file picker opens. Semistrap validates the file header to make sure it is a real font.
+  </Step>
+  <Step title="Launch Roblox">
+    The custom font is applied on the next launch.
+  </Step>
+  <Step title="Remove the font">
+    Click **Delete custom font** to revert to Roblox's default.
+  </Step>
+</Steps>
+
+## Mods folder
+
+Click **Open mods folder** to open the `Modifications` directory in Explorer. Anything you place here mirrors Roblox's `content` layout and overrides the matching file at launch.
+
+## Roblox compatibility settings
+
+Click **Open compatibility settings** to open the Windows properties dialog on the Roblox Player executable, on the **Compatibility** tab. Use this to force DPI overrides or compatibility modes when a specific display or driver combination misbehaves.
+
+<Note>
+  This button is only useful if Roblox is installed. If not, Semistrap shows an error message.
+</Note>

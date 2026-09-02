@@ -1,0 +1,31 @@
+---
+title: "Semistrap settings: updates and data export"
+sidebarTitle: "Semistrap"
+description: "The Semistrap settings page controls automatic update checks and lets you export your config and logs as a zip archive."
+---
+
+The **Semistrap** page contains general application settings that apply to Semistrap itself, not to Roblox. Use it to control automatic update checks and to export a support bundle.
+
+## Update checking
+
+- **Check for updates**: when on, Semistrap checks GitHub Releases on launch and prompts you when a newer version is available.
+
+## Export data
+
+Semistrap can package your local state into a single `.zip` for backup or bug reports.
+
+<Steps>
+  <Step title="Choose what to include">
+    Toggle **Config** (your `Settings.json`, `State.json`, and `FastFlags.json`) and **Logs** (older log files, excluding the current session).
+  </Step>
+  <Step title="Click Export">
+    Pick a save location. The archive is named `Semistrap-export-<timestamp>.zip`.
+  </Step>
+  <Step title="Share or archive">
+    When reporting an issue on GitHub or Discord, attach this file so maintainers can reproduce your setup.
+  </Step>
+</Steps>
+
+<Warning>
+  The exported archive contains your Semistrap configuration. It does not include your Roblox account credentials, but review it before sharing publicly.
+</Warning>

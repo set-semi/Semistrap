@@ -1,25 +1,35 @@
 ---
-title: "See Roblox server geographic location in Semistrap"
+title: "Roblox server location and details in Semistrap"
 sidebarTitle: "Server Location"
-description: "Semistrap shows the geographic location of the Roblox server you are connected to, using IP geolocation data from ipinfo.io."
+description: "Semistrap tracks the Roblox server you connect to and shows its region, powered by ipinfo.io. Optionally surface it on Discord Rich Presence."
 ---
 
-Semistrap detects the Roblox server you connect to and displays its geographic location. This is useful for understanding latency, verifying region routing, or just satisfying curiosity about where your matches are hosted.
+Semistrap includes an activity tracker that detects the Roblox server you connect to and can display its geographic region. This is useful for understanding latency, verifying region routing, or knowing where your matches are hosted.
 
 ## What it shows
 
-For each Roblox session, Semistrap displays:
+For each Roblox session, Semistrap can display the region of the connected server. When **Show server details** is enabled, the region is also included in your Discord Rich Presence.
 
-- Country
-- Region or city
-- Approximate coordinates
+The location lookup is provided by [ipinfo.io](https://ipinfo.io).
 
-The data is provided by [ipinfo.io](https://ipinfo.io) via a lookup on the server IP.
+## Enable server details
+
+<Steps>
+  <Step title="Open Integrations">
+    Go to **Settings > Integrations**.
+  </Step>
+  <Step title="Enable activity tracking">
+    Turn on **Activity tracking** if it is off. Server-details lookups require it.
+  </Step>
+  <Step title="Enable Show server details">
+    Toggle **Show server details** on.
+  </Step>
+</Steps>
 
 ## Privacy
 
 Only the Roblox server's public IP is queried. Semistrap does not share your own IP or account information with third parties.
 
 <Info>
-  Server location lookups happen on-demand when you join a game. If your network blocks ipinfo.io, the location field stays blank and Semistrap continues to function normally.
+  Location lookups happen on-demand when you join a game. If your network blocks ipinfo.io, the region field stays blank and Semistrap continues to function normally.
 </Info>

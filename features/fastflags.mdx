@@ -1,0 +1,25 @@
+---
+title: "Manage Roblox FastFlags with Semistrap"
+sidebarTitle: "FastFlags"
+description: "Use Semistrap's FastFlag manager to tune Roblox rendering (MSAA, texture quality, display scaling) and to edit raw flags in a dedicated editor."
+---
+
+Semistrap's FastFlag manager writes overrides to Roblox's `ClientSettings\ClientAppSettings.json` so you can tune rendering and other client behavior. Common tweaks are exposed as presets on the settings page; the raw flag editor is available when Roblox Studio is installed.
+
+## Preset toggles
+
+Open **Settings > FastFlags** to configure:
+
+- **MSAA level**: `Default`, `1x`, `2x`, or `4x`. Sets `DFFlagDebugGraphicsPreferD3D11` and MSAA-related flags.
+- **Texture quality**: `Default`, or levels `0` through `3`. Enables `DFFlagTextureQualityOverrideEnabled` and sets `DFIntTextureQualityOverride`.
+- **Fix display scaling**: forces Roblox to render at the native resolution regardless of Windows display scaling.
+- **Use FastFlag manager**: master toggle. When off, Semistrap does not write any flag overrides.
+- **Reset configuration**: temporarily clears all flags for the current session; toggle off to restore.
+
+## FastFlag editor
+
+If Roblox Studio is installed, click **Open FastFlag editor** on the FastFlags page to open a dedicated editor for raw flags. You can add, edit, and delete arbitrary flags there.
+
+<Warning>
+  Unknown or malformed flags can crash Roblox or prevent it from launching. Reset to defaults if a game becomes unstable.
+</Warning>

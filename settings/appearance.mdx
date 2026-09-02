@@ -1,25 +1,29 @@
 ---
-title: "Appearance settings: customize Semistrap's look and icons"
+title: "Appearance settings: theme, language, dialog, and icon"
 sidebarTitle: "Appearance"
-description: "Change Semistrap's theme, accent color, and icon set from the Appearance tab to match your Windows setup."
+description: "Change the Semistrap menu theme and language, and pick the bootstrapper dialog style, icon, and title shown while Roblox launches."
 ---
 
-The **Appearance** tab controls how Semistrap itself looks. It does not affect Roblox in-game visuals (see [Graphics Config](/features/graphics) for that).
+The **Appearance** page controls how both the Semistrap menu and the bootstrapper dialog look.
 
-## Options
+## Menu
 
-- **Theme**: light, dark, or system.
-- **Accent color**: pick an accent that matches your Windows setup.
-- **Icon set**: choose the icon style used in the Semistrap menu.
-- **Compact mode**: shrink padding for smaller displays.
+- **Theme**: `Default` (follows Windows), `Light`, or `Dark`. Applies immediately to the settings window.
+- **Language**: pick a UI language from the supported locales list.
 
-## Change appearance
+## Bootstrapper dialog
 
-<Steps>
-  <Step title="Open Appearance">
-    Go to **Settings > Appearance**.
-  </Step>
-  <Step title="Preview and save">
-    Changes preview live in the menu. Close Settings to keep them.
-  </Step>
-</Steps>
+- **Dialog style**: choose from historical Roblox styles, Semistrap's Fluent dialog, or a custom theme. See [Custom bootstrapper](/features/custom-bootstrapper) for the full list.
+- **Preview**: open the selected dialog with sample text so you can see it before launching Roblox.
+- **Icon**: pick a Roblox-era icon or `Custom` and browse to a `.ico` file.
+- **Title**: the window title shown on the bootstrapper dialog.
+
+## Custom themes
+
+The **Custom themes** section is expanded only when **Dialog style** is set to `Custom`. Use it to:
+
+- **Add** a new theme.
+- **Rename**, **Delete**, or **Export** the selected theme.
+- **Edit** the theme in the visual bootstrapper editor.
+
+See [Custom bootstrapper](/features/custom-bootstrapper) for a walkthrough.

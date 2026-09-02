@@ -1,23 +1,25 @@
 ---
-title: "Bootstrapper settings: control how Roblox launches"
+title: "Bootstrapper settings: launch confirmation and updates"
 sidebarTitle: "Bootstrapper"
-description: "Configure how Semistrap launches and manages Roblox, including channels, launch flags, and graphics overrides."
+description: "Control how Semistrap launches Roblox: confirm launches, install updates in the background, and force a full Roblox reinstall on next launch."
 ---
 
-The **Bootstrapper** tab governs how Semistrap starts and manages the Roblox client. This is where advanced launch behavior lives.
+The **Bootstrapper** page controls how Semistrap prepares and launches Roblox itself.
 
-## Options
+## Launch behavior
 
-- **Roblox channel**: pick between the standard channel and any supported alternatives.
-- **Launch flags**: pass FastFlags or other supported options to Roblox at launch.
-- **Graphics overrides**: force specific rendering settings (see [Graphics Config](/features/graphics)).
-- **Auto-relaunch**: reopen Roblox automatically if it crashes during a session.
-- **Cleanup**: control how Semistrap handles Roblox's cache and installation files between updates.
+- **Confirm launches**: show a confirmation dialog before Roblox starts. Useful if you launch from browser links and want a chance to cancel.
 
-## Reset to defaults
+## Updates
 
-If a change causes problems, open **Settings > Bootstrapper** and click **Reset to defaults**. Semistrap restores all bootstrapper options to their initial values.
+- **Background updates**: install Roblox updates in the background between sessions instead of blocking the next launch.
 
-<Warning>
-  Only change launch flags you understand. Unknown or unsupported flags can prevent Roblox from starting.
-</Warning>
+## Reinstall Roblox
+
+- **Force Roblox reinstallation**: on the next launch, Semistrap wipes and reinstalls Roblox from scratch.
+
+<Note>
+  If neither Roblox Player nor Studio is installed, this option is on and cannot be turned off until Roblox is installed successfully.
+</Note>
+
+Use this after a broken update or when troubleshooting install corruption. See [Troubleshooting](/troubleshooting) for related fixes.
